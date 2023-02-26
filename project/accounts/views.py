@@ -6,8 +6,7 @@ from django.views import generic
 from . import forms
 
 
-class HomeView(generic.TemplateView):
-    template_name = 'index.html'
+
 
 class SignUp(generic.CreateView):
     form_class = forms.UserCreateForm
