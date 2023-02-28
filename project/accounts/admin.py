@@ -7,7 +7,10 @@ from .models import User
 
 
 fields = list(UserAdmin.fieldsets)
-fields[1] = ('Personal Info', {'fields':('first_name', 'last_name', 'email', 'age','sex')})
+fields[1] = ('Personal Info', {'fields':(
+ 'birth_day',
+ 'sex',
+ 'ailments')})
 
 UserAdmin.fieldsets = tuple(fields)
 
