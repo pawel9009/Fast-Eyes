@@ -1,13 +1,10 @@
 from django.contrib import admin
-
 from django.contrib.auth.admin import UserAdmin
-
 
 from .models import User
 
-
 fields = list(UserAdmin.fieldsets)
-fields[1] = ('Personal Info', {'fields':(
+fields[1] = ('Personal Info', {'fields': (
  'birth_day',
  'sex',
  'ailments')})
