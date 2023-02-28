@@ -1,12 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from .const import SEX_CHOICES
 
-
-class User(models.Model):
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-
-    age =  models.IntegerField()
+class User(AbstractUser):
+    age =  models.IntegerField(null=True, blank=True)
+    sex = models.CharField(choices=SEX_CHOICES,max_length=10, default=None, null=True)
 
     def __str__(self):
         return f"{self.username}"

@@ -17,6 +17,7 @@ def register(request):
         form = forms.UserCreateForm(request.POST)
         if form.is_valid():
             user = form.save()
+            print(user)
             # Przetwórz pomyślnie utworzonego użytkownika
             return redirect('home')
     else:
