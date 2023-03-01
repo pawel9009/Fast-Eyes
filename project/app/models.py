@@ -1,9 +1,12 @@
 from django.db import models
-
+from mysite import settings
+import uuid
 
 class Image(models.Model):
-    img = models.ImageField()
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    img = models.ImageField(upload_to=settings.MEDIA_ROOT)
     name = models.CharField(max_length=100)
 
     def __str__(self) -> str:
-        return super().__str__()
+
+        return f'{self.name} {self.uuid}'
