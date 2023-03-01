@@ -32,14 +32,16 @@ class UploadView(TemplateView):
     template_name = 'app/upload_data.html'
 
     def post(self, request, *args, **kwargs):
+        context = {}
+        context['form'] = self.form
+        
+        print(context['form'])
 
-        path = 'C:/Users/pc/Desktop/dataset'
+        path = 'D:/Github/Fast-Eyes/project/media'
         for filename in os.listdir(path):
             if filename.endswith('.jpg') or filename.endswith('.png'):
                 name = filename.split('.')[0]
-                obj = Image()
-                obj.name = name
-                obj.img = filename
+                obj = Image.objects.create(name=name, img = f'{path}/{filename}')
                 obj.save()
         print('cos poszlo')
             

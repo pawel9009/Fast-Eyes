@@ -5,9 +5,11 @@
 <div class="container">
 
         <h1>add dataset</h1>
-    <form method="post">
+    <form method="post" enctype='multipart/form-data'>
         {% csrf_token %}
-        <input type="submit" class="btn btn-default" value="dodaj">
+        <input type="file" name="images" multiple>
+        <button type="submit">Upload</button>
+        {{form}}
     </form>
     </div>
                 
