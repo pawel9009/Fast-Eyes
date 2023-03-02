@@ -3,14 +3,12 @@
 {% block content %}
 
 <div class="container">
-
         <h1>add dataset</h1>
-    <form method="post" enctype='multipart/form-data'>
-        {% csrf_token %}
-        <input type="file" name="images" multiple>
-        <button type="submit">Upload</button>
-        {{form}}
-    </form>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input required name='images' type='file' multiple><br>
+            <button type="submit">Submit</button>
+          </form>
     </div>
                 
 {% endblock %}

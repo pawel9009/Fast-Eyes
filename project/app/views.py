@@ -1,9 +1,10 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView, FormView
 from .forms import ImageForm
 from .models import Image
+from django.forms import formset_factory
 import os
 
 
@@ -16,7 +17,7 @@ class ImageFormView(TemplateView):
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse_lazy('home', kwargs={'pk': pk}))
+            return HttpResponseRedirect(reverse_lazy('home', ))
         context = self.get_context_data(form=form)
         return self.render_to_response(context)     
 
@@ -27,22 +28,20 @@ class ImageFormView(TemplateView):
     
 
 
-class UploadView(TemplateView):
-    form = Image
-    template_name = 'app/upload_data.html'
+def upload_images(request):
+    imags = Image.objects.all()
 
-    def post(self, request, *args, **kwargs):
-        context = {}
-        context['form'] = self.form
-        
-        print(context['form'])
+    if request.method == 'GET':
+        return render(request, 'app/upload_data.html')
 
-        path = 'D:/Github/Fast-Eyes/project/media'
-        for filename in os.listdir(path):
-            if filename.endswith('.jpg') or filename.endswith('.png'):
-                name = filename.split('.')[0]
-                obj = Image.objects.create(name=name, img = f'{path}/{filename}')
-                obj.save()
-        print('cos poszlo')
-            
-        return redirect('home')
+    if request.method == 'POST':
+        image_list = request.FILES.getlist('images')
+
+        for img in image_list:
+            name1 = str(img).split('.')[0]
+            obj = Image.objects.create(
+                img = img,
+                name = name1
+            )
+    return redirect('home')
+
