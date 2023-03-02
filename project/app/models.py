@@ -1,6 +1,9 @@
-from django.db import models
-from mysite import settings
 import uuid
+
+from django.db import models
+
+from mysite import settings
+
 
 class Image(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)

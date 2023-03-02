@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import ImageFormView,upload_images
+
+from .views import ImageFormView, upload_images
 
 app_name = 'app'
 
