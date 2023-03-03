@@ -21,6 +21,7 @@ class Experiment(models.Model):
     date = models.DateField(default=datetime.datetime.now)
     correct = models.IntegerField()
     incorrect = models.IntegerField()
+    samples = models.CharField(max_length=256, default=None, null=False)
 
     def __str__(self) -> str:
         return f'{self.user_id} {self.date}'

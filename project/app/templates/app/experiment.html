@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+ {% for item in form %}
+
+<img src="{{ item.img.url }}"/>
+{% endfor %} 
+
+{% endblock %}
