@@ -1,10 +1,54 @@
 {% extends 'base.html' %}
 
+{% block head %}
+
+
+
+{% endblock %}
+
 {% block content %}
 
- {% for item in form %}
 
-<img src="{{ item.img.url }}"/>
-{% endfor %} 
+<div id="image-container">
+    {% for item in form %}
+      <img src="{{ item.img.url }}" class="product-image">
+    {% endfor %}
+  </div>
+  <div id="prev-button" class="nav-button">prew</div>
+  <div id="next-button" class="nav-button">next</div>
+{% endblock %}
 
+{% block scripts %}
+<script>
+    const images = document.querySelectorAll('.product-image');
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    let currentIndex = 0;
+
+    function showImage(index) {
+      images.forEach(image => image.style.display = 'none');
+      images[index].style.display = 'block';
+      setTimeout(() => {
+        images[index].style.display = 'none';
+      }, 5);
+    }
+
+    function prevImage() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        showImage(currentIndex);
+      }
+    }
+
+    function nextImage() {
+      if (currentIndex < images.length - 1) {
+        currentIndex++;
+        showImage(currentIndex);
+      }
+    }
+
+    prevButton.addEventListener('click', prevImage);
+    nextButton.addEventListener('click', nextImage);
+    showImage(currentIndex);
+  </script>
 {% endblock %}
