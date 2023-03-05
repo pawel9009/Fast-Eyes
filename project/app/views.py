@@ -13,14 +13,6 @@ class ExperimentView(TemplateView):
     template_name = 'app/experiment.html'
     context_object_name = 'emp'
 
-    # def post(self, request, *args, **kwargs):
-    #     form = ImageForm(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         form.save()
-    #         return HttpResponseRedirect(reverse_lazy('home', ))
-    #     context = self.get_context_data(form=form)
-    #     return self.render_to_response(context)
-
     def get(self, request, *args, **kwargs):
         qs = Image.objects.none()
         unique = []
@@ -30,8 +22,6 @@ class ExperimentView(TemplateView):
                 print(random_id)
                 unique.append(random_id)
                 qs |= Image.objects.filter(id=random_id)
-
-        # random_list = random.sample(list, 5)
         return render(request, 'app/experiment.html', {'form': qs })
 
 
