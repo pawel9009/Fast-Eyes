@@ -1,21 +1,29 @@
 {% extends 'base.html' %}
 
-{% block head %}
-
-
-
-{% endblock %}
 
 {% block content %}
 
 
-<div id="image-container">
-    {% for item in form %}
-      <img src="{{ item.img.url }}" class="product-image">
-    {% endfor %}
-  </div>
-  <div id="prev-button" class="nav-button">prew</div>
-  <div id="next-button" class="nav-button">next</div>
+
+
+  <div id="col-sm-2 col-sm-offset-5 text-center">
+      {% for item in form %}
+        <img src="{{ item.img.url }}" class="product-image">
+        {{item.name}}
+      {% endfor %}
+    </div>
+
+   
+    <div class='btnnav'>
+      <br>
+      <input type='text' name='answer'>
+    <br>
+    <br>
+    
+    <button  id="prev-button" class="btn" >prev </button>
+    <button id="next-button" class="btn" >next </button>
+    </div>
+
 {% endblock %}
 
 {% block scripts %}
@@ -28,9 +36,9 @@
     function showImage(index) {
       images.forEach(image => image.style.display = 'none');
       images[index].style.display = 'block';
-      setTimeout(() => {
+      {% comment %} setTimeout(() => {
         images[index].style.display = 'none';
-      }, 5);
+      }, 5); {% endcomment %}
     }
 
     function prevImage() {

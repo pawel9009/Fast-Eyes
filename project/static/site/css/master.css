@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    color: white;
+    font-size: large;
+  }
+
+  .product-image{
+    display: block;
+    margin: 0 auto;
+    height: 600px;
+  }
+
+.btnnav{
+  text-align: center;
+  color: aqua;
+  }
