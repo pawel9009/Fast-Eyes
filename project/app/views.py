@@ -16,12 +16,14 @@ class ExperimentView(TemplateView):
     def get(self, request, *args, **kwargs):
         qs = Image.objects.none()
         unique = []
+        self.labels = {}
         while len(unique)<5:
             random_id = random.randint(1,12)
             if random_id not in unique:
-                print(random_id)
                 unique.append(random_id)
                 qs |= Image.objects.filter(id=random_id)
+        for item in qs:
+            self.labels[item.name]=''
         return render(request, 'app/experiment.html', {'form': qs })
 
 

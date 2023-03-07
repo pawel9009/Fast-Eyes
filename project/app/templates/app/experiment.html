@@ -6,21 +6,19 @@
 
 
 
-  <div id="col-sm-2 col-sm-offset-5 text-center">
-      {% for item in form %}
-        <img src="{{ item.img.url }}" class="product-image">
-        {{item.name}}
-      {% endfor %}
-    </div>
+<div id="col-sm-2 col-sm-offset-5 text-center">
+{% for item in form %}
+  <img src="{{ item.img.url }}" class="product-image">
+{% endfor %}
+</div>
 
    
     <div class='btnnav'>
       <br>
-      <input type='text' name='answer'>
+      <input type='text' id="myinput">
     <br>
     <br>
     
-    <button  id="prev-button" class="btn" >prev </button>
     <button id="next-button" class="btn" >next </button>
     </div>
 
@@ -28,10 +26,13 @@
 
 {% block scripts %}
 <script>
+    const labels = document.getElementById('hiden_labels');
     const images = document.querySelectorAll('.product-image');
-    const prevButton = document.getElementById('prev-button');
     const nextButton = document.getElementById('next-button');
+    const input = document.getElementById('myinput');
     let currentIndex = 0;
+    let currentAns = 0;
+
 
     function showImage(index) {
       images.forEach(image => image.style.display = 'none');
@@ -41,22 +42,22 @@
       }, 5); {% endcomment %}
     }
 
-    function prevImage() {
-      if (currentIndex > 0) {
-        currentIndex--;
-        showImage(currentIndex);
-      }
-    }
 
-    function nextImage() {
+
+    {% comment %} function nextImage() {
       if (currentIndex < images.length - 1) {
         currentIndex++;
         showImage(currentIndex);
       }
-    }
+    } {% endcomment %}
 
-    prevButton.addEventListener('click', prevImage);
-    nextButton.addEventListener('click', nextImage);
+    input.addEventListener("input", function() {
+      if (input.value.length > 0) {
+        nextButton.removeAttribute("disabled");
+      } else {
+        nextButton.setAttribute("disabled", "disabled");
+      }
+      nextButton.addEventListener("input", function() {
     showImage(currentIndex);
   </script>
 {% endblock %}
