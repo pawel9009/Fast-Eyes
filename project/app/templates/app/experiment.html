@@ -3,61 +3,55 @@
 
 {% block content %}
 
+<form>
+  {% for item in form %}
+    <img src="{{ item.img.url }}" class="product-image">
+  {% endfor %}
 
+<input id='answer' type='text'>
+<button class="btn hidden">next </button>
+</form>
 
+<button id="next-button" class="btn btn-primary btnnav">next </button>
 
-<div id="col-sm-2 col-sm-offset-5 text-center">
-{% for item in form %}
-  <img src="{{ item.img.url }}" class="product-image">
-{% endfor %}
-</div>
-
-   
-    <div class='btnnav'>
-      <br>
-      <input type='text' id="myinput">
-    <br>
-    <br>
-    
-    <button id="next-button" class="btn" >next </button>
-    </div>
 
 {% endblock %}
 
 {% block scripts %}
 <script>
-    const labels = document.getElementById('hiden_labels');
-    const images = document.querySelectorAll('.product-image');
-    const nextButton = document.getElementById('next-button');
-    const input = document.getElementById('myinput');
-    let currentIndex = 0;
-    let currentAns = 0;
+  const images = document.querySelectorAll('.product-image');
+  const nextButton = document.getElementById('next-button');
+  const ans = document.getElementById('answer');
+  let currentIndex = 0;
 
+  function showImage(index) {
+    images.forEach(image => image.style.display = 'none');
+    images[index].style.display = 'block';
+    {% comment %} setTimeout(() => {
+      images[index].style.display = 'none';
+    }, 5); {% endcomment %}
+  }
+    const labels = [];
+    let ansver = '';
 
-    function showImage(index) {
-      images.forEach(image => image.style.display = 'none');
-      images[index].style.display = 'block';
-      {% comment %} setTimeout(() => {
-        images[index].style.display = 'none';
-      }, 5); {% endcomment %}
-    }
+  function nextImage() {
+    if (currentIndex < images.length - 1) {
+      ansver = ans.value;
+      console.log(ansver.length);
 
-
-
-    {% comment %} function nextImage() {
-      if (currentIndex < images.length - 1) {
+      if (ansver.length > 0){
         currentIndex++;
+        labels.push(ansver);
         showImage(currentIndex);
-      }
-    } {% endcomment %}
 
-    input.addEventListener("input", function() {
-      if (input.value.length > 0) {
-        nextButton.removeAttribute("disabled");
-      } else {
-        nextButton.setAttribute("disabled", "disabled");
-      }
-      nextButton.addEventListener("input", function() {
-    showImage(currentIndex);
-  </script>
+      } else{
+        console.log('cos poszlo nie tak');
+      };
+    
+    };
+  };
+
+  nextButton.addEventListener('click', nextImage);
+  showImage(currentIndex);
+</script>
 {% endblock %}

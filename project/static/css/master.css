@@ -1,12 +1,27 @@
-html,
-body {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  background: #2f294f;
-  margin: 0;
-  font-size: large;
+html {
+    overflow-y: scroll;
 }
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    color: black;
+    font-size: large;
+  }
+
+  .product-image{
+    display: block;
+    margin: 0 auto;
+    height: 600px;
+  }
+
+.btnnav{
+  text-align: center;
+  font-size: 50px;
+  }
+
+
 
 #note {
   position: absolute;
