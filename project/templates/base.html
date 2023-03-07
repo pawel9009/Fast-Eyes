@@ -39,14 +39,18 @@
     </div>
 </nav>
 
-<div class="container mycontent">
+
+
+<div class='justify-content-center'>
     {% block content %}
-{% endblock %}
+    {% endblock %}
+    
 </div>
 
-<canvas id="canvas"></canvas>
 </body>
 <script type="text/javascript" src="{% static 'site/js/master.js' %}">
 
 </script>
+{% block scripts %}
+{% endblock %}
 </html>
