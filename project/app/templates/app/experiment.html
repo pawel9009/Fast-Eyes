@@ -4,14 +4,19 @@
 {% block content %}
 
 {% for item in form %}
-<img src="{{ item.img.url }}" class="product-image" alt='image'> 
+<img src="{{ item.img.url }}" name="{{item.name}}" class="product-image" alt='image'> 
 {% endfor %}
 <div class='form'>
-
 <form method="POST">
   {% csrf_token %}
-  <input  id='data' type='text' name='data' class='hidden'>
-<button id='submit' class="btn btn-primary d-block mx-auto btn-lg hidden"> Send </button>
+
+  <input  id='data' name='data' class='hidden'>
+
+  <input id='labels' name='labels' class='hidden'>
+
+  <div class="text-center">
+<button id='submit' class="btn btn-primary d-block mx-auto btn-lg hidden"> Results </button>
+</div>
 </form>
 
 
@@ -34,27 +39,31 @@
   const nextButton = document.getElementById('next-button');
   const subbutton = document.getElementById('submit');
   const data = document.getElementById('data');
+  const labels_data = document.getElementById('labels');
   const ans = document.getElementById('answer');
   let currentIndex = 0;
       let labels = '';
     let ansver = '';
+    let labels_dataxx = '';
 
 
   function showImage(index) {
     images.forEach(image => image.style.display = 'none');
     images[index].style.display = 'block';
-    {% comment %} setTimeout(() => {
+    labels_dataxx += "-" + images[currentIndex].name;
+     setTimeout(() => {
       images[index].style.display = 'none';
-    }, 5); {% endcomment %}
+    }, 30); 
   }
 
   function nextImage() {
     if (currentIndex < images.length) {
 
-      if (currentIndex === images.length -1){
+      if (currentIndex === images.length-1){
         console.log('koniec listy');
+        nextButton.classList.add('hidden');
+        ans.classList.add('hidden');
         subbutton.classList.remove('hidden');
-
 
       } else{
         console.log('');
@@ -67,10 +76,11 @@
 
       if (ansver.length > 0){
         currentIndex++;
-        labels += " " + ansver;
+        labels += "-" + ansver;
+        labels_data.value = labels_dataxx;
         ans.value='';
-        console.log(labels, 'labelki');
-        data.value = labels
+        data.value = labels;
+        
         ans.focus();
         showImage(currentIndex);
 

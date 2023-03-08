@@ -17,7 +17,7 @@ class ExperimentView(TemplateView):
         qs = Image.objects.none()
         unique = []
         self.labels = {}
-        while len(unique)<2:
+        while len(unique)<7:
             random_id = random.randint(1,12)
             if random_id not in unique:
                 unique.append(random_id)
@@ -29,10 +29,16 @@ class ExperimentView(TemplateView):
     
 
     def post(self, request, *args, **kwargs):
-        print('dosło')
-        data = request.POST['data'].split()
+        answers = request.POST['data'][1:].split('-')
+        labels = request.POST['labels'][1:].split('-')
+        for i, answer in enumerate(answers):
+            if answer == labels[i]:
+                print('zgadles')
+            else:
+                print('nie udalo sie', labels[i])
    
-        print(data)
+        print(answers)
+        print(labels)
       
  
         return redirect('home')
