@@ -17,14 +17,26 @@ class ExperimentView(TemplateView):
         qs = Image.objects.none()
         unique = []
         self.labels = {}
-        while len(unique)<5:
+        while len(unique)<2:
             random_id = random.randint(1,12)
             if random_id not in unique:
                 unique.append(random_id)
                 qs |= Image.objects.filter(id=random_id)
         for item in qs:
             self.labels[item.name]=''
+
         return render(request, 'app/experiment.html', {'form': qs })
+    
+
+    def post(self, request, *args, **kwargs):
+        print('dosło')
+        data = request.POST['data'].split()
+   
+        print(data)
+      
+ 
+        return redirect('home')
+        
 
 
 
@@ -34,6 +46,7 @@ class ImageFormView(TemplateView):
     context_object_name = 'emp'
 
     def post(self, request, *args, **kwargs):
+
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()

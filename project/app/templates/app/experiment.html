@@ -3,16 +3,27 @@
 
 {% block content %}
 
-<form>
-  {% for item in form %}
-    <img src="{{ item.img.url }}" class="product-image">
-  {% endfor %}
+{% for item in form %}
+<img src="{{ item.img.url }}" class="product-image" alt='image'> 
+{% endfor %}
+<div class='form'>
 
-<input id='answer' type='text'>
-<button class="btn hidden">next </button>
+<form method="POST">
+  {% csrf_token %}
+  <input  id='data' type='text' name='data' class='hidden'>
+<button id='submit' class="btn btn-primary d-block mx-auto btn-lg hidden"> Send </button>
 </form>
 
-<button id="next-button" class="btn btn-primary btnnav">next </button>
+
+<div class="text-center">
+  <input id='answer' type='text'>
+  </div>
+  
+</div>
+
+<div class="text-center d-grid">
+<button id="next-button" class="btn btn-primary d-block mx-auto btn-lg"> Next </button>
+</div>
 
 
 {% endblock %}
@@ -21,8 +32,13 @@
 <script>
   const images = document.querySelectorAll('.product-image');
   const nextButton = document.getElementById('next-button');
+  const subbutton = document.getElementById('submit');
+  const data = document.getElementById('data');
   const ans = document.getElementById('answer');
   let currentIndex = 0;
+      let labels = '';
+    let ansver = '';
+
 
   function showImage(index) {
     images.forEach(image => image.style.display = 'none');
@@ -31,17 +47,31 @@
       images[index].style.display = 'none';
     }, 5); {% endcomment %}
   }
-    const labels = [];
-    let ansver = '';
 
   function nextImage() {
-    if (currentIndex < images.length - 1) {
+    if (currentIndex < images.length) {
+
+      if (currentIndex === images.length -1){
+        console.log('koniec listy');
+        subbutton.classList.remove('hidden');
+
+
+      } else{
+        console.log('');
+        
+      };
+
+
       ansver = ans.value;
-      console.log(ansver.length);
+
 
       if (ansver.length > 0){
         currentIndex++;
-        labels.push(ansver);
+        labels += " " + ansver;
+        ans.value='';
+        console.log(labels, 'labelki');
+        data.value = labels
+        ans.focus();
         showImage(currentIndex);
 
       } else{
