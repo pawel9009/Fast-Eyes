@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 
 from .forms import ImageForm, ExperimentForm
-from .models import Image
+from .models import Image, Experiment
 
 import random
 
@@ -32,9 +32,14 @@ class ExperimentView(TemplateView):
         answers = request.POST['data'][1:].split('-')
         labels = request.POST['labels'][1:].split('-')
         for i, answer in enumerate(answers):
+            obj = Image.objects.get(name = labels[i])
             if answer == labels[i]:
+                obj.correct = obj.correct + 1
+                obj.save()
                 print('zgadles')
             else:
+                obj.incorrect = obj.incorrect + 1
+                obj.save()
                 print('nie udalo sie', labels[i])
    
         print(answers)

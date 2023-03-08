@@ -10,6 +10,10 @@ class Image(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     img = models.ImageField(upload_to=settings.MEDIA_ROOT)
     name = models.CharField(max_length=100)
+    correct = models.IntegerField(null=True, default=0)
+    incorrect = models.IntegerField(null=True ,default=0)
+    
+
 
     def __str__(self) -> str:
 
@@ -19,8 +23,7 @@ class Image(models.Model):
 class Experiment(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     date = models.DateField(default=datetime.datetime.now)
-    correct = models.IntegerField()
-    incorrect = models.IntegerField()
+    pass_rate = models.FloatField(default=0, null=True)
     samples = models.CharField(max_length=256, default=None, null=False)
 
     def __str__(self) -> str:

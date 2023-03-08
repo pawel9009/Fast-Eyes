@@ -12,4 +12,4 @@ class ImageForm(forms.ModelForm):
 class ExperimentForm(forms.ModelForm):
     class Meta:
         model = Experiment
-        fields = ['user_id', 'correct', 'incorrect', 'samples']
+        fields = ['user_id', 'samples']
