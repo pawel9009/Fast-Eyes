@@ -27,7 +27,7 @@ class Experiment(models.Model):
     samples = models.CharField(max_length=256, default=None, null=False)
 
     def __str__(self) -> str:
-        return f'{self.user_id} {self.date}'
+        return f'{self.id} {self.user_id} {self.date}'
 
 
 
