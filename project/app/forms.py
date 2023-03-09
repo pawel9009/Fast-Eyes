@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Image, Experiment
+from .models import Experiment, Image
 
 
 class ImageForm(forms.ModelForm):

@@ -1,97 +1,88 @@
 {% extends 'base.html' %}
-
-
 {% block content %}
 
 {% for item in form %}
-<img src="{{ item.img.url }}" name="{{item.name}}" class="product-image" alt='image'> 
+<img
+  src="{{ item.img.url }}"
+  name="{{item.name}}"
+  class="product-image"
+  alt="image"
+/>
 {% endfor %}
-<div class='form'>
-<form method="POST">
-  {% csrf_token %}
+<div class="form">
+  <form method="POST">
+    {% csrf_token %}
 
-  <input  id='data' name='data' class='hidden'>
+    <input id="data" name="data" class="hidden" />
 
-  <input id='labels' name='labels' class='hidden'>
+    <input id="labels" name="labels" class="hidden" />
+
+    <div class="text-center">
+      <button id="submit" class="btn btn-primary d-block mx-auto btn-lg hidden">
+        Results
+      </button>
+    </div>
+  </form>
 
   <div class="text-center">
-<button id='submit' class="btn btn-primary d-block mx-auto btn-lg hidden"> Results </button>
-</div>
-</form>
-
-
-<div class="text-center">
-  <input id='answer' type='text'>
+    <input id="answer" type="text" />
   </div>
-  
 </div>
 
 <div class="text-center d-grid">
-<button id="next-button" class="btn btn-primary d-block mx-auto btn-lg"> Next </button>
+  <button id="next-button" class="btn btn-primary d-block mx-auto btn-lg">
+    Next
+  </button>
 </div>
 
-
-{% endblock %}
-
-{% block scripts %}
+{% endblock %} {% block scripts %}
 <script>
-  const images = document.querySelectorAll('.product-image');
-  const nextButton = document.getElementById('next-button');
-  const subbutton = document.getElementById('submit');
-  const data = document.getElementById('data');
-  const labels_data = document.getElementById('labels');
-  const ans = document.getElementById('answer');
+  const images = document.querySelectorAll(".product-image");
+  const nextButton = document.getElementById("next-button");
+  const subbutton = document.getElementById("submit");
+  const data = document.getElementById("data");
+  const labels_data = document.getElementById("labels");
+  const ans = document.getElementById("answer");
   let currentIndex = 0;
-      let labels = '';
-    let ansver = '';
-    let labels_dataxx = '';
-
+  let labels = "";
+  let ansver = "";
+  let labels_dataxx = "";
 
   function showImage(index) {
-    images.forEach(image => image.style.display = 'none');
-    images[index].style.display = 'block';
+    images.forEach((image) => (image.style.display = "none"));
+    images[index].style.display = "block";
     labels_dataxx += "-" + images[currentIndex].name;
-     setTimeout(() => {
-      images[index].style.display = 'none';
-    }, 500); 
+    setTimeout(() => {
+      images[index].style.display = "none";
+    }, 500);
   }
 
   function nextImage() {
     if (currentIndex < images.length) {
-
-      if (currentIndex === images.length-1){
-        console.log('koniec listy');
-        nextButton.classList.add('hidden');
-        ans.classList.add('hidden');
-        subbutton.classList.remove('hidden');
-
-      } else{
-        console.log('');
-        
-      };
-
+      if (currentIndex === images.length - 1) {
+        nextButton.classList.add("hidden");
+        ans.classList.add("hidden");
+        subbutton.classList.remove("hidden");
+      } else {
+        console.log("");
+      }
 
       ansver = ans.value;
 
-
-      if (ansver.length > 0){
+      if (ansver.length > 0) {
         currentIndex++;
         labels += "-" + ansver;
         labels_data.value = labels_dataxx;
-        ans.value='';
+        ans.value = "";
         data.value = labels;
-        
+
         ans.focus();
         showImage(currentIndex);
+      } 
+    }
+  }
 
-      } else{
-        console.log('cos poszlo nie tak');
-      };
-    
-    };
-  };
-
-  nextButton.addEventListener('click', nextImage);
+  nextButton.addEventListener("click", nextImage);
   showImage(currentIndex);
 </script>
 {% endblock %}
