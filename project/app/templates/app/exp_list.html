@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{%  for item in object_list %}
+    {{item.user_id}}  {{item.date}}  {{item.pass_rate}} {{item.samples}}</br>
+{% endfor %}
+
+{% endblock %}

@@ -1,12 +1,13 @@
 html {
     overflow-y: scroll;
+
 }
 
 body {
     margin: 0;
     overflow: hidden;
     background: black;
-    color: black;
+    color: gray;
     font-size: large;
   }
 

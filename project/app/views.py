@@ -3,7 +3,8 @@ import random
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView, ListView
 
 from .forms import ExperimentForm, ImageForm
 from .models import Experiment, Image
@@ -12,13 +13,12 @@ from .models import Experiment, Image
 class ExperimentView(TemplateView):
     form = ExperimentForm
     template_name = 'app/experiment.html'
-    context_object_name = 'emp'
 
     def get(self, request, *args, **kwargs):
         qs = Image.objects.none()
         unique = []
         self.labels = {}
-        while len(unique) < 9:
+        while len(unique) < 4:
             random_id = random.randint(1, 12)
             if random_id not in unique:
                 unique.append(random_id)
@@ -30,11 +30,15 @@ class ExperimentView(TemplateView):
         answers = request.POST['data'][1:].split('-')
         labels = request.POST['labels'][1:].split('-')
         corr_answers = 0
+        dict_labels = {name:0 for name in labels}
+        
+        
         for i, answer in enumerate(answers):
             obj = Image.objects.get(name=labels[i])
             if answer == labels[i]:
                 corr_answers += 1
                 obj.correct = obj.correct + 1
+                dict_labels[labels[i]]=1
                 obj.save()
                 print('zgadles')
             else:
@@ -43,7 +47,7 @@ class ExperimentView(TemplateView):
                 print('nie udalo sie', labels[i])
         exp = Experiment.objects.create(user_id=request.user,
                                         pass_rate=round(corr_answers/len(labels)*100, 2),
-                                        samples=labels)
+                                        samples=dict_labels)
         exp.save()
         print(answers)
         print(labels)
@@ -81,3 +85,14 @@ def upload_images(request):
             name1 = str(img).split('.')[0]
             Image.objects.create(img=img, name=name1)
     return redirect('home')
+
+
+class ExperimentListView(LoginRequiredMixin, ListView):
+    model = Experiment
+    template_name = 'app/exp_list.html'
+    context_object_name = 'exp_list'
+
+    def get_queryset(self):
+        return Experiment.objects.filter(user_id=self.request.user)
+
+
