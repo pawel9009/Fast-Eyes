@@ -3,7 +3,8 @@
 {% block content %}
 
 {%  for item in object_list %}
-    {{item.user_id}}  {{item.date}}  {{item.pass_rate}} {{item.samples}}</br>
+  User: {{item.user_id}} Date: {{item.date}}  Pass rate: {{item.pass_rate}} </br>
+ Samples:  {{item.samples}}</br></br>
 {% endfor %}
 
 {% endblock %}

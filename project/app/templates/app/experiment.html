@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-
+<div class="text-center d-grid">
+<button id="start-button" class="btn btn-primary d-block mx-auto btn-lg"> Start</button>
+</div>
+<div id = 'container' class='hidden'> 
 {% for item in form %}
 <img
   src="{{ item.img.url }}"
@@ -36,9 +38,13 @@
     Next
   </button>
 </div>
+</div>
+
 
 {% endblock %} {% block scripts %}
 <script>
+  const startButton = document.getElementById('start-button');
+  const container = document.getElementById('container');
   const images = document.querySelectorAll(".product-image");
   const nextButton = document.getElementById("next-button");
   const subbutton = document.getElementById("submit");
@@ -51,13 +57,16 @@
   let ansver = "";
   let labels_dataxx = "";
 
+
+
+
   function showImage(index) {
     images.forEach((image) => (image.style.display = "none"));
     images[index].style.display = "block";
     labels_dataxx += "-" + images[currentIndex].name;
     setTimeout(() => {
       images[index].style.display = "none";
-    }, 500);
+    }, 1000);
   }
 
   function nextImage() {
@@ -85,6 +94,10 @@
     }
   }
 
+  function handleButtonClick() {
+    container.classList.remove("hidden");
+    startButton.classList.add("hidden");
+    
     nextButton.addEventListener("click", nextImage);
     answer.addEventListener("keypress", function (event) {
       if (event.key === "Enter") {
@@ -93,6 +106,8 @@
       }
     });
     showImage(currentIndex);
+  }
 
+  startButton.addEventListener('click', handleButtonClick);
 </script>
 {% endblock %}

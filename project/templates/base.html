@@ -26,9 +26,8 @@
                 {% if user.is_superuser %}
                    <li> <a href="{% url 'app:data' %}"> add data</a></li>
                 {% endif %}
-                <li> <a href="{% url 'app:exp_list' %}"> My cos </a></li>
+                <li> <a href="{% url 'app:exp_list' %}"> My results </a></li>
                 <li> <a href="{% url 'app:experiment' %}"> Experiment </a></li>
-                 <li> <a href="{% url 'app:image' %}"> Image </a></li>
                 <li> <a href="{% url 'accounts:logout' %}"> Log Out</a></li>
               
                 

@@ -54,23 +54,23 @@ class ExperimentView(TemplateView):
         return redirect('home')
 
 
-class ImageFormView(TemplateView):
-    form = ImageForm
-    template_name = 'app/exp.html'
-    context_object_name = 'emp'
+# class ImageFormView(TemplateView):
+#     form = ImageForm
+#     template_name = 'app/exp.html'
+#     context_object_name = 'emp'
 
-    def post(self, request, *args, **kwargs):
+#     def post(self, request, *args, **kwargs):
 
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse_lazy('home', ))
-        context = self.get_context_data(form=form)
-        return self.render_to_response(context)
+#         form = ImageForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect(reverse_lazy('home', ))
+#         context = self.get_context_data(form=form)
+#         return self.render_to_response(context)
 
-    def get(self, request, *args, **kwargs):
-        qs = Image.objects.all().first()
-        return render(request, 'app/exp.html', {'form': qs})
+#     def get(self, request, *args, **kwargs):
+#         qs = Image.objects.all().first()
+#         return render(request, 'app/exp.html', {'form': qs})
 
 
 def upload_images(request):
@@ -93,6 +93,7 @@ class ExperimentListView(LoginRequiredMixin, ListView):
     context_object_name = 'exp_list'
 
     def get_queryset(self):
-        return Experiment.objects.filter(user_id=self.request.user)
+        qs = Experiment.objects.filter(user_id=self.request.user)
+        return qs
 
 
