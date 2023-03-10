@@ -11,10 +11,12 @@ body {
     font-size: large;
   }
 
+
+
   .product-image{
     display: block;
     margin: 0 auto;
-    height: 600px;
+    height: 300px;
   }
 
 .btnnav{

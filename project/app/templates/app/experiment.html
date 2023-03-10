@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-
+{% comment %} <img src="{{ MEDIA_URL }}znak.png" alt="my image"> {% endcomment %}
 <div class="text-center d-grid">
 <button id="start-button" class="btn btn-primary d-block mx-auto btn-lg"> Start</button>
 </div>
 <div id = 'container' class='hidden'> 
 {% for item in form %}
+<div id='image'>
 <img
   src="{{ item.img.url }}"
   name="{{item.name}}"
   class="product-image"
   alt="image"
 />
+</div>
 {% endfor %}
 <div class="form">
   <form method="POST">
@@ -65,7 +68,7 @@
     images[index].style.display = "block";
     labels_dataxx += "-" + images[currentIndex].name;
     setTimeout(() => {
-      images[index].style.display = "none";
+      images[index].setAttribute("src", "{{ MEDIA_URL }}znak.png");
     }, 1000);
   }
 
@@ -98,6 +101,9 @@
     container.classList.remove("hidden");
     startButton.classList.add("hidden");
     
+    setTimeout(() => {
+      images[index].style.display = "none";
+    }, 1000);
     nextButton.addEventListener("click", nextImage);
     answer.addEventListener("keypress", function (event) {
       if (event.key === "Enter") {
