@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% comment %} <img src="{{ MEDIA_URL }}znak.png" alt="my image"> {% endcomment %}
+
 <div class="text-center d-grid">
+  <input id="time"  type="text" placeholder="Miliseconds"/></br>
 <button id="start-button" class="btn btn-primary d-block mx-auto btn-lg"> Start</button>
 </div>
 <div id = 'container' class='hidden'> 
@@ -19,7 +20,7 @@
 <div class="form">
   <form method="POST">
     {% csrf_token %}
-
+    <input id="timev2" name="time" class="hidden" />
     <input id="data" name="data" class="hidden" />
 
     <input id="labels" name="labels" class="hidden" />
@@ -47,6 +48,8 @@
 {% endblock %} {% block scripts %}
 <script>
   const startButton = document.getElementById('start-button');
+  const time = document.getElementById('time');
+  const timev2 = document.getElementById('timev2');
   const container = document.getElementById('container');
   const images = document.querySelectorAll(".product-image");
   const nextButton = document.getElementById("next-button");
@@ -55,6 +58,7 @@
   const labels_data = document.getElementById("labels");
   const ans = document.getElementById("answer");
   let currentIndex = 0;
+  let time_duration = 0;
 
   let labels = "";
   let ansver = "";
@@ -69,7 +73,7 @@
     labels_dataxx += "-" + images[currentIndex].name;
     setTimeout(() => {
       images[index].setAttribute("src", "{{ MEDIA_URL }}znak.png");
-    }, 1000);
+    }, time_duration);
   }
 
   function nextImage() {
@@ -78,6 +82,7 @@
         nextButton.classList.add("hidden");
         ans.classList.add("hidden");
         subbutton.classList.remove("hidden");
+        timev2.value = time_duration;
       } else {
         console.log("");
       }
@@ -100,10 +105,9 @@
   function handleButtonClick() {
     container.classList.remove("hidden");
     startButton.classList.add("hidden");
+    time_duration = Number(time.value);
+    time.classList.add("hidden");
     
-    setTimeout(() => {
-      images[index].style.display = "none";
-    }, 1000);
     nextButton.addEventListener("click", nextImage);
     answer.addEventListener("keypress", function (event) {
       if (event.key === "Enter") {

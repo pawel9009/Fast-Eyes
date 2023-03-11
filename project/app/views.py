@@ -29,9 +29,9 @@ class ExperimentView(TemplateView):
     def post(self, request, *args, **kwargs):
         answers = request.POST['data'][1:].split('-')
         labels = request.POST['labels'][1:].split('-')
+        duration_time = int(request.POST['time'])
         corr_answers = 0
         dict_labels = {name:0 for name in labels}
-        
         
         for i, answer in enumerate(answers):
             obj = Image.objects.get(name=labels[i])
@@ -40,37 +40,17 @@ class ExperimentView(TemplateView):
                 obj.correct = obj.correct + 1
                 dict_labels[labels[i]]=1
                 obj.save()
-                print('zgadles')
             else:
                 obj.incorrect = obj.incorrect + 1
                 obj.save()
-                print('nie udalo sie', labels[i])
         exp = Experiment.objects.create(user_id=request.user,
                                         pass_rate=round(corr_answers/len(labels)*100, 2),
-                                        samples=dict_labels)
+                                        samples=dict_labels,
+                                        duration = duration_time)
         exp.save()
         print(answers)
         print(labels)
         return redirect('home')
-
-
-# class ImageFormView(TemplateView):
-#     form = ImageForm
-#     template_name = 'app/exp.html'
-#     context_object_name = 'emp'
-
-#     def post(self, request, *args, **kwargs):
-
-#         form = ImageForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect(reverse_lazy('home', ))
-#         context = self.get_context_data(form=form)
-#         return self.render_to_response(context)
-
-#     def get(self, request, *args, **kwargs):
-#         qs = Image.objects.all().first()
-#         return render(request, 'app/exp.html', {'form': qs})
 
 
 def upload_images(request):
