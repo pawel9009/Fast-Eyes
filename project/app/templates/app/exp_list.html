@@ -3,9 +3,16 @@
 {% block content %}
 
 {%  for item in object_list %}
-  User: {{item.user_id}} </br>Date: {{item.date}}  </br> Pass rate: {{item.pass_rate}} </br>
-  Duration time: {{item.duration}} </br>
- Samples:  {{item.samples}}</br></br>
+
+<div class="card card-inverse">
+  <div class="card-block" style="background: #111;padding: 10px; border-style: solid">
+    <h3 class="card-title">User: {{item.user_id}}</h3>
+    <h3 class="card-title">Date: {{item.date}} </h3>
+    <h3 class="card-title">Results: {{item.pass_rate}}% </h3>
+    <h3 class="card-title">  Duration time: {{item.duration}}ms</h3>
+    <p class="card-text"> Samples:  {{item.samples}}
+</div>
+</br>
 {% endfor %}
 
 {% endblock %}

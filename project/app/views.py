@@ -74,6 +74,7 @@ class ExperimentListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         qs = Experiment.objects.filter(user_id=self.request.user)
+        qs = qs.order_by('-id')
         return qs
 
 
