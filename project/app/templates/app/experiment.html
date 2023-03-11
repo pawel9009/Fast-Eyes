@@ -71,9 +71,11 @@
     images.forEach((image) => (image.style.display = "none"));
     images[index].style.display = "block";
     labels_dataxx += "-" + images[currentIndex].name;
+    ans.classList.add("hidden");
     setTimeout(() => {
       images[index].setAttribute("src", "{{ MEDIA_URL }}znak.png");
     }, time_duration);
+    ans.classList.remove("hidden");
   }
 
   function nextImage() {

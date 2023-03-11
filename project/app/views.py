@@ -15,15 +15,9 @@ class ExperimentView(TemplateView):
     template_name = 'app/experiment.html'
 
     def get(self, request, *args, **kwargs):
-        qs = Image.objects.none()
-        unique = []
-        self.labels = {}
-        while len(unique) < 4:
-            random_id = random.randint(1, 12)
-            if random_id not in unique:
-                unique.append(random_id)
-                qs |= Image.objects.filter(id=random_id)
-
+        num_imgs = Image.objects.count()
+        random_ids = random.sample(range(1, num_imgs + 1), 5)
+        qs = Image.objects.filter(id__in=random_ids)
         return render(request, 'app/experiment.html', {'form': qs})
 
     def post(self, request, *args, **kwargs):
