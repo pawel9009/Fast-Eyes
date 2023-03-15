@@ -3,7 +3,20 @@
 {% block content %}
 
 <div class="text-center d-grid">
+  <label>
+    <input type="radio" name="options" value="7000">
+    Easy - 7s
+  </label></br>
+  <label>
+    <input type="radio" name="options" value="5000">
+    Medium 5s
+  </label></br>
+  <label>
+    <input type="radio" name="options" value="3000">
+    Hard 3s
+  </label>
   <input id="time"  type="text" placeholder="Miliseconds"/></br>
+  
 <button id="start-button" class="btn btn-primary d-block mx-auto btn-lg"> Start</button>
 </div>
 <div id = 'container' class='hidden'> 
@@ -48,6 +61,7 @@
 {% endblock %} {% block scripts %}
 <script>
   const startButton = document.getElementById('start-button');
+
   const time = document.getElementById('time');
   const timev2 = document.getElementById('timev2');
   const container = document.getElementById('container');
@@ -109,6 +123,9 @@
     startButton.classList.add("hidden");
     time_duration = Number(time.value);
     time.classList.add("hidden");
+    radio = document.querySelector('input[name="options"]:checked').value;
+
+    console.log(radio);
     
     nextButton.addEventListener("click", nextImage);
     answer.addEventListener("keypress", function (event) {
