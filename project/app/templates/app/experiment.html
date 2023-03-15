@@ -2,22 +2,24 @@
 {% load static %}
 {% block content %}
 
-<div class="text-center d-grid">
+<div id="time" class="text-center d-grid">
+  <div class="radio-tile-group radio"> 
   <label>
-    <input type="radio" name="options" value="7000">
+    <input type="radio" class="btn-check" name="options" value="7000">
     Easy - 7s
   </label></br>
   <label>
-    <input type="radio" name="options" value="5000">
+    <input  class="radiotype"  type="radio" name="options" value="5000">
     Medium 5s
   </label></br>
   <label>
-    <input type="radio" name="options" value="3000">
+    <input class="radiotype" type="radio" name="options" value="3000">
     Hard 3s
-  </label>
-  <input id="time"  type="text" placeholder="Miliseconds"/></br>
+  </label></br>
   
 <button id="start-button" class="btn btn-primary d-block mx-auto btn-lg"> Start</button>
+
+</div>
 </div>
 <div id = 'container' class='hidden'> 
 {% for item in form %}
@@ -61,8 +63,6 @@
 {% endblock %} {% block scripts %}
 <script>
   const startButton = document.getElementById('start-button');
-
-  const time = document.getElementById('time');
   const timev2 = document.getElementById('timev2');
   const container = document.getElementById('container');
   const images = document.querySelectorAll(".product-image");
@@ -88,11 +88,12 @@
     ans.classList.add("hidden");
     setTimeout(() => {
       images[index].setAttribute("src", "{{ MEDIA_URL }}znak.png");
+      ans.classList.remove("hidden");
     }, time_duration);
-    ans.classList.remove("hidden");
   }
 
   function nextImage() {
+    
     if (currentIndex < images.length) {
       if (currentIndex === images.length - 1) {
         nextButton.classList.add("hidden");
@@ -102,7 +103,7 @@
       } else {
         console.log("");
       }
-
+      
       ansver = ans.value;
 
       if (ansver.length > 0) {
@@ -111,7 +112,6 @@
         labels_data.value = labels_dataxx;
         ans.value = "";
         data.value = labels;
-
         ans.focus();
         showImage(currentIndex);
       } 
@@ -121,11 +121,9 @@
   function handleButtonClick() {
     container.classList.remove("hidden");
     startButton.classList.add("hidden");
-    time_duration = Number(time.value);
-    time.classList.add("hidden");
-    radio = document.querySelector('input[name="options"]:checked').value;
 
-    console.log(radio);
+    time_duration = Number(document.querySelector('input[name="options"]:checked').value);
+    time.classList.add("hidden");
     
     nextButton.addEventListener("click", nextImage);
     answer.addEventListener("keypress", function (event) {
