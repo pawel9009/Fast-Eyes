@@ -12,7 +12,24 @@ body {
     font-family: 'Carter One', cursive;
   }
 
+.signup{
+  color: aqua;
+}
 
+.basenav{
+
+  color: aqua;
+  font-size: larger;
+  font-weight: 900;
+  transition-duration: 300ms;
+}
+.basenav:hover{
+  background-color: black;
+  color: aqua;
+  font-size: larger;
+  font-weight: 900;
+  transition-duration: 300ms;
+}
 
   .product-image{
     display: block;
@@ -70,7 +87,7 @@ body {
   background-color:white;
 }
 
-#start-button{
+.start-button{
   width: 100%;
   background-color: aqua;
   color: black;
@@ -81,7 +98,7 @@ body {
   transition-duration: 300ms;
 }
 
-#start-button:hover{
+.start-button:hover{
 
   background-color: black;
   color: aqua;
@@ -90,4 +107,10 @@ body {
   border-radius: 10px;
   border: 3px solid aqua;
   transition-duration: 300ms;
+}
+
+#logcontainer{
+  width: 40%;
+  color: white;
+  margin-top: 40px;
 }
