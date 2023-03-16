@@ -1,12 +1,11 @@
 import random
 
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView
 
-from .forms import ExperimentForm, ImageForm
+from .forms import ExperimentForm
 from .models import Experiment, Image
 
 
@@ -42,9 +41,30 @@ class ExperimentView(TemplateView):
                                         samples=dict_labels,
                                         duration = duration_time)
         exp.save()
-        print(answers)
-        print(labels)
         return redirect('home')
+    
+
+class ChallengeView(ExperimentView):
+    template_name = 'app/challenge.html'
+
+    def get(self, request, *args, **kwargs):
+        num_imgs = Image.objects.count()
+        random_ids = random.sample(range(1, num_imgs + 1), 5)
+        qs = Image.objects.filter(id__in=random_ids)
+        return render(request, 'app/challenge.html', {'form': qs})
+
+
+
+
+class ExperimentListView(LoginRequiredMixin, ListView):
+    model = Experiment
+    template_name = 'app/exp_list.html'
+    context_object_name = 'exp_list'
+
+    def get_queryset(self):
+        qs = Experiment.objects.filter(user_id=self.request.user)
+        qs = qs.order_by('-id')
+        return qs
 
 
 def upload_images(request):
@@ -59,16 +79,5 @@ def upload_images(request):
             name1 = str(img).split('.')[0]
             Image.objects.create(img=img, name=name1)
     return redirect('home')
-
-
-class ExperimentListView(LoginRequiredMixin, ListView):
-    model = Experiment
-    template_name = 'app/exp_list.html'
-    context_object_name = 'exp_list'
-
-    def get_queryset(self):
-        qs = Experiment.objects.filter(user_id=self.request.user)
-        qs = qs.order_by('-id')
-        return qs
 
 

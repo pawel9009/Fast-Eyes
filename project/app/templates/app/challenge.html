@@ -1,26 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
+Challenge !!!
 <div id="time" class="text-center d-grid">
-  <div class="radio-buttons">
-  <ul>
-    <li>
-      <input type="radio" id="checkbox1"  name="options" value="7000">
-      <label for="checkbox1">Easy</label>
-    </li>
-    <li>
-      <input type="radio" id="checkbox2"  name="options"  value="5000">
-      <label for="checkbox2">Medium</label>
-    </li>
-    <li>
-      <input type="radio" id="checkbox3"  name="options"  value="100">
-      <label for="checkbox3">Hard</label>
-    </li>
-  </ul>
-</div>
 <button id="start-button" class="btn d-block mx-auto btn-lg start-button"> Start</button>
-
 </div>
 </div>
 <div id = 'container' class='hidden'> 
@@ -74,7 +57,11 @@
   const labels_data = document.getElementById("labels");
   const ans = document.getElementById("answer");
   let currentIndex = 0;
-  let time_duration = 0;
+  let time_duration = 5000;
+  {% comment %} const times = [8000, 7040, 6195, 5452, 4798, 4222, 3715, 3418, 3145, 
+  2893, 2662, 2449, 2326, 2210, 2099, 1994, 1895, 1857, 1820, 1783]; {% endcomment %}
+
+  const times = [1000, 4000, 1000, 4000, 1000];
 
   let labels = "";
   let ansver = "";
@@ -91,7 +78,7 @@
     setTimeout(() => {
       images[index].setAttribute("src", "{{ MEDIA_URL }}znak.png");
       ans.classList.remove("hidden");
-    }, time_duration);
+    }, times[index]);
   }
 
   function nextImage() {
@@ -124,13 +111,10 @@
     container.classList.remove("hidden");
     startButton.classList.add("hidden");
 
-    time_duration = Number(document.querySelector('input[name="options"]:checked').value);
-    time.classList.add("hidden");
     
     nextButton.addEventListener("click", nextImage);
     answer.addEventListener("keypress", function (event) {
       if (event.key === "Enter") {
-        console.log('działa');
         nextButton.click();
       }
     });
