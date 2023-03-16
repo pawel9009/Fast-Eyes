@@ -9,6 +9,7 @@ body {
     background: black;
     color: gray;
     font-size: large;
+    font-family: 'Carter One', cursive;
   }
 
 
@@ -39,6 +40,7 @@ body {
 }
 
 .radio-buttons label {
+  color: white;
   position: relative;
   display: inline-block;
   margin-bottom: 10px;
@@ -47,6 +49,7 @@ body {
 }
 
 .radio-buttons input[type="radio"] {
+  
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -79,6 +82,7 @@ body {
 }
 
 #start-button:hover{
+
   background-color: black;
   color: aqua;
   font-size: larger;
