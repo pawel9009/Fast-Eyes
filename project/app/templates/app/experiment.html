@@ -3,21 +3,23 @@
 {% block content %}
 
 <div id="time" class="text-center d-grid">
-  <div class="radio-tile-group radio"> 
-  <label>
-    <input type="radio" class="btn-check" name="options" value="7000">
-    Easy - 7s
-  </label></br>
-  <label>
-    <input  class="radiotype"  type="radio" name="options" value="5000">
-    Medium 5s
-  </label></br>
-  <label>
-    <input class="radiotype" type="radio" name="options" value="3000">
-    Hard 3s
-  </label></br>
-  
-<button id="start-button" class="btn btn-primary d-block mx-auto btn-lg"> Start</button>
+  <div class="radio-buttons">
+  <ul>
+    <li>
+      <input type="radio" id="checkbox1"  name="options" value="7000">
+      <label for="checkbox1">Easy</label>
+    </li>
+    <li>
+      <input type="radio" id="checkbox2"  name="options"  value="5000">
+      <label for="checkbox2">Medium</label>
+    </li>
+    <li>
+      <input type="radio" id="checkbox3"  name="options"  value="3000">
+      <label for="checkbox3">Hard</label>
+    </li>
+  </ul>
+</div>
+<button id="start-button" class="btn d-block mx-auto btn-lg"> Start</button>
 
 </div>
 </div>
