@@ -58,10 +58,10 @@ Challenge !!!
   const ans = document.getElementById("answer");
   let currentIndex = 0;
   let time_duration = 5000;
-  {% comment %} const times = [8000, 7040, 6195, 5452, 4798, 4222, 3715, 3418, 3145, 
-  2893, 2662, 2449, 2326, 2210, 2099, 1994, 1895, 1857, 1820, 1783]; {% endcomment %}
+  const times = [8000, 7040, 6195, 5452, 4798, 4222, 3715, 3418, 3145, 
+  2893, 2662, 2449, 2326, 2210, 2099, 1994, 1895, 1857, 1820, 1783]; 
 
-  const times = [1000, 4000, 1000, 4000, 1000];
+
 
   let labels = "";
   let ansver = "";
@@ -75,9 +75,11 @@ Challenge !!!
     images[index].style.display = "block";
     labels_dataxx += "-" + images[currentIndex].name;
     ans.classList.add("hidden");
+    
     setTimeout(() => {
       images[index].setAttribute("src", "{{ MEDIA_URL }}znak.png");
       ans.classList.remove("hidden");
+      ans.focus();
     }, times[index]);
   }
 
@@ -96,12 +98,13 @@ Challenge !!!
       ansver = ans.value;
 
       if (ansver.length > 0) {
+        
         currentIndex++;
+        console.log(images[index].name)
         labels += "-" + ansver;
         labels_data.value = labels_dataxx;
         ans.value = "";
         data.value = labels;
-        ans.focus();
         showImage(currentIndex);
       } 
     }

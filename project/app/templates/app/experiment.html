@@ -14,7 +14,7 @@
       <label for="checkbox2">Medium</label>
     </li>
     <li>
-      <input type="radio" id="checkbox3"  name="options"  value="100">
+      <input type="radio" id="checkbox3"  name="options"  value="3000">
       <label for="checkbox3">Hard</label>
     </li>
   </ul>
@@ -50,12 +50,12 @@
   </form>
 
   <div class="text-center">
-    <input id="answer" type="text" />
+    <input id="answer" type="text" class="input-type"/>
   </div>
 </div>
 
 <div class="text-center d-grid">
-  <button id="next-button" class="btn btn-primary d-block mx-auto btn-lg">
+  <button id="next-button" class="btn start-button" style="width:25%; margin-top:1em">
     Next
   </button>
 </div>
@@ -91,6 +91,7 @@
     setTimeout(() => {
       images[index].setAttribute("src", "{{ MEDIA_URL }}znak.png");
       ans.classList.remove("hidden");
+      ans.focus();
     }, time_duration);
   }
 
@@ -114,7 +115,7 @@
         labels_data.value = labels_dataxx;
         ans.value = "";
         data.value = labels;
-        ans.focus();
+      
         showImage(currentIndex);
       } 
     }
