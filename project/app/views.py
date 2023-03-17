@@ -67,6 +67,16 @@ class ExperimentListView(LoginRequiredMixin, ListView):
         return qs
 
 
+class ChallengeListView(LoginRequiredMixin, ListView):
+    model = Experiment
+    template_name = 'app/challenge_list.html'
+    context_object_name = 'challenge_list'
+
+    def get_queryset(self):
+        qs = Experiment.objects.filter(user_id=self.request.user)
+        qs = qs.order_by('-id')
+        return qs
+
 def upload_images(request):
 
     if request.method == 'GET':

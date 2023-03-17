@@ -33,12 +33,12 @@ Challenge !!!
   </form>
 
   <div class="text-center">
-    <input id="answer" type="text" />
+    <input id="answer" type="text" class="input-type" placeholder="..."/>
   </div>
 </div>
 
 <div class="text-center d-grid">
-  <button id="next-button" class="btn btn-primary d-block mx-auto btn-lg">
+  <button id="next-button" class="btn start-button" style="width:25%; margin-top:1em">
     Next
   </button>
 </div>
@@ -98,14 +98,20 @@ Challenge !!!
       ansver = ans.value;
 
       if (ansver.length > 0) {
+        if(images[currentIndex].name==ansver)
+        {
+          currentIndex++;
+
+          labels += "-" + ansver;
+          labels_data.value = labels_dataxx;
+          ans.value = "";
+          data.value = labels;
+          showImage(currentIndex);
+        }else{
+          console.log('koniec');
+          subbutton.click();
+        }
         
-        currentIndex++;
-        console.log(images[index].name)
-        labels += "-" + ansver;
-        labels_data.value = labels_dataxx;
-        ans.value = "";
-        data.value = labels;
-        showImage(currentIndex);
       } 
     }
   }
