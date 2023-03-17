@@ -25,6 +25,7 @@ class Experiment(models.Model):
     pass_rate = models.FloatField(default=0, null=True)
     samples = models.CharField(max_length=256, default=None, null=False)
     duration = models.IntegerField(null=True, default=500)
+    challenge = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f'{self.id} {self.user_id} {self.date}'

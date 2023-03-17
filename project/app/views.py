@@ -44,6 +44,8 @@ class ExperimentView(TemplateView):
         return redirect('home')
     
 
+
+
 class ChallengeView(ExperimentView):
     template_name = 'app/challenge.html'
 
@@ -53,7 +55,8 @@ class ChallengeView(ExperimentView):
         qs = Image.objects.filter(id__in=random_ids)
         return render(request, 'app/challenge.html', {'form': qs})
 
-
+class ResultsListView(LoginRequiredMixin, TemplateView):
+    template_name = 'app/result_list.html'
 
 
 class ExperimentListView(LoginRequiredMixin, ListView):
@@ -62,7 +65,7 @@ class ExperimentListView(LoginRequiredMixin, ListView):
     context_object_name = 'exp_list'
 
     def get_queryset(self):
-        qs = Experiment.objects.filter(user_id=self.request.user)
+        qs = Experiment.objects.filter(user_id=self.request.user, challenge=False)
         qs = qs.order_by('-id')
         return qs
 
@@ -73,7 +76,7 @@ class ChallengeListView(LoginRequiredMixin, ListView):
     context_object_name = 'challenge_list'
 
     def get_queryset(self):
-        qs = Experiment.objects.filter(user_id=self.request.user)
+        qs = Experiment.objects.filter(user_id=self.request.user, challenge=True)
         qs = qs.order_by('-id')
         return qs
 

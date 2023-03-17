@@ -11,6 +11,5 @@ for x in range(20):
         n-= n*0.05
     else:
         n-= n*0.02
-    
 
 print(lista)

@@ -1,11 +1,11 @@
 {% extends "app/result_list.html" %}
 
 {% block results %}
-halooo
+
 {%  for item in object_list %}
 
-<div class="card card-inverse">
-  <div class="card-block" style="background: #111;padding: 10px; border-style: solid">
+<div class="card card-inverse" style="margin-top:20px">
+  <div class="card-block main-card" >
     <h3 class="card-title">User: {{item.user_id}}</h3>
     <h3 class="card-title">Date: {{item.date}} </h3>
     <h3 class="card-title">Results: {{item.pass_rate}}% </h3>
