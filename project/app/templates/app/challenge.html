@@ -90,7 +90,7 @@ Challenge !!!
         nextButton.classList.add("hidden");
         ans.classList.add("hidden");
         subbutton.classList.remove("hidden");
-        timev2.value = time_duration;
+        
       } else {
         console.log("");
       }
@@ -108,6 +108,7 @@ Challenge !!!
           data.value = labels;
           showImage(currentIndex);
         }else{
+          timev2.value = times[currentIndex];
           console.log('koniec');
           subbutton.click();
         }

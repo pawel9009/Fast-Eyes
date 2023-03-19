@@ -43,7 +43,7 @@ class ExperimentView(TemplateView):
         exp.save()
         return redirect('home')
     
-
+    
 
 
 class ChallengeView(ExperimentView):
@@ -54,6 +54,28 @@ class ChallengeView(ExperimentView):
         random_ids = random.sample(range(1, num_imgs + 1), 20)
         qs = Image.objects.filter(id__in=random_ids)
         return render(request, 'app/challenge.html', {'form': qs})
+    
+
+    def post(self, request, *args, **kwargs):
+            answers = request.POST['data'][1:].split('-')
+            labels = request.POST['labels'][1:].split('-')
+            duration_time = int(request.POST['time'])
+            
+            corr_answers = 0
+            
+            for i, answer in enumerate(answers):
+                obj = Image.objects.get(name=labels[i])
+                corr_answers += 1
+                obj.correct = obj.correct + 1
+                obj.save()
+
+            exp = Experiment.objects.create(user_id=request.user,
+                                            pass_rate=round(corr_answers/20, 2),
+                                            samples=labels,
+                                            duration = duration_time,
+                                            challenge = True)
+            exp.save()
+            return redirect('home')
 
 class ResultsListView(LoginRequiredMixin, TemplateView):
     template_name = 'app/result_list.html'
