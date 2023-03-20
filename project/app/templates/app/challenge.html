@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-Challenge !!!
+<div class="text-center" id="desc">
+  Welcome to the real challenge mode!!! </br>
+   When you start, you will initially have 8 seconds to remember what is on the displayed picture.</br>
+    After this time, write down what you remembered, and if you manage to answer correctly, you will move on.</br>
+     With each successive correct answer the time to memorize will decrease. </br>
+     To get 100% you must answer 20 samples correctly.  To check your score go to the My Results tab.</br> Good luck!!!
+    </br></br>
+</div>
+
 <div id="time" class="text-center d-grid">
 <button id="start-button" class="btn d-block mx-auto btn-lg start-button"> Start</button>
 </div>
@@ -52,6 +60,7 @@ Challenge !!!
   const container = document.getElementById('container');
   const images = document.querySelectorAll(".product-image");
   const nextButton = document.getElementById("next-button");
+  const desc = document.getElementById("desc");
   const subbutton = document.getElementById("submit");
   const data = document.getElementById("data");
   const labels_data = document.getElementById("labels");
@@ -120,6 +129,7 @@ Challenge !!!
   function handleButtonClick() {
     container.classList.remove("hidden");
     startButton.classList.add("hidden");
+    desc.classList.add("hidden");
 
     
     nextButton.addEventListener("click", nextImage);

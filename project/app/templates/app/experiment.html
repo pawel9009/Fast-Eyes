@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
+<div class="text-center" id="desc">
+  In this mode you have the opportunity to choose the level of difficulty.</br>
+   Each differs in the amount of time to memorize. For the easy level it is 7 seconds, normal is 5 seconds and difficult is 3 seconds.</br>
+    After the time is up, type in what you managed to remember, even if you fail to answer correctly you will move on. </br>
+    There are 10 samples and to see the result you must answer all 10.</br>
+     Good luck!!!</br>
+    </br>
+</div>
 <div id="time" class="text-center d-grid">
   <div class="radio-buttons">
   <ul>
@@ -50,7 +57,7 @@
   </form>
 
   <div class="text-center">
-    <input id="answer" type="text" class="input-type"/>
+    <input id="answer" type="text" class="input-type" placeholder="..."/>
   </div>
 </div>
 
@@ -69,6 +76,7 @@
   const container = document.getElementById('container');
   const images = document.querySelectorAll(".product-image");
   const nextButton = document.getElementById("next-button");
+  const desc = document.getElementById("desc");
   const subbutton = document.getElementById("submit");
   const data = document.getElementById("data");
   const labels_data = document.getElementById("labels");
@@ -124,6 +132,7 @@
   function handleButtonClick() {
     container.classList.remove("hidden");
     startButton.classList.add("hidden");
+    desc.classList.add("hidden");
 
     time_duration = Number(document.querySelector('input[name="options"]:checked').value);
     time.classList.add("hidden");

@@ -15,7 +15,7 @@ class ExperimentView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         num_imgs = Image.objects.count()
-        random_ids = random.sample(range(1, num_imgs + 1), 5)
+        random_ids = random.sample(range(1, num_imgs + 1), 10)
         qs = Image.objects.filter(id__in=random_ids)
         return render(request, 'app/experiment.html', {'form': qs})
 
@@ -70,7 +70,7 @@ class ChallengeView(ExperimentView):
                 obj.save()
 
             exp = Experiment.objects.create(user_id=request.user,
-                                            pass_rate=round(corr_answers/20, 2),
+                                            pass_rate=round((corr_answers/20)*100, 2),
                                             samples=labels,
                                             duration = duration_time,
                                             challenge = True)

@@ -114,10 +114,12 @@ body {
   border-radius: 10px;
   border: 3px solid aqua;
   transition-duration: 300ms;
+  text-decoration: none;
 }
 
-.list_results{
+.list_results:active{
   margin: 50px;
+text-decoration: none;
   
 }
 
