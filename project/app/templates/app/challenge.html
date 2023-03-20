@@ -70,13 +70,9 @@
   const times = [8000, 7040, 6195, 5452, 4798, 4222, 3715, 3418, 3145, 
   2893, 2662, 2449, 2326, 2210, 2099, 1994, 1895, 1857, 1820, 1783]; 
 
-
-
   let labels = "";
   let ansver = "";
   let labels_dataxx = "";
-
-
 
 
   function showImage(index) {
@@ -99,10 +95,7 @@
         nextButton.classList.add("hidden");
         ans.classList.add("hidden");
         subbutton.classList.remove("hidden");
-        
-      } else {
-        console.log("");
-      }
+      };
       
       ansver = ans.value;
 
@@ -131,7 +124,6 @@
     startButton.classList.add("hidden");
     desc.classList.add("hidden");
 
-    
     nextButton.addEventListener("click", nextImage);
     answer.addEventListener("keypress", function (event) {
       if (event.key === "Enter") {

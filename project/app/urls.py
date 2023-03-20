@@ -1,9 +1,10 @@
-from django.urls import path
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
 from django.conf.urls.static import static
+from django.contrib.auth.decorators import login_required
+from django.urls import path
 
-from .views import ExperimentView, upload_images, ExperimentListView, ChallengeView,ChallengeListView,ResultsListView
+from .views import (ChallengeListView, ChallengeView, ExperimentListView,
+                    ExperimentView, upload_images)
 
 app_name = 'app'
 
@@ -14,4 +15,4 @@ urlpatterns = [
     path('list/', login_required(ExperimentListView.as_view()), name='list'),
     path('exp_list/', login_required(ExperimentListView.as_view()), name='exp_list'),
     path('chall_list/', login_required(ChallengeListView.as_view()), name='chall_list'),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
