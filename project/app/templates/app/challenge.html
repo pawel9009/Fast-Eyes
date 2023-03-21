@@ -111,8 +111,20 @@
           showImage(currentIndex);
         }else{
           timev2.value = times[currentIndex];
-          console.log('koniec');
-          subbutton.click();
+          
+          if (currentIndex==0){
+           desc.classList.remove("hidden");
+          ans.classList.add("hidden");
+          images[currentIndex].classList.add("hidden");
+          nextButton.classList.add("hidden");
+            desc.innerHTML = "Unfortunately, you failed.</br> You will be able to try again in a while."
+            setTimeout(() => {
+              subbutton.click();
+            }, 9000);
+          }else{
+            subbutton.click();
+          };
+
         }
         
       } 

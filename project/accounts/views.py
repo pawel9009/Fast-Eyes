@@ -7,6 +7,7 @@ def register(request):
     if request.method == 'POST':
         form = forms.UserCreateForm(request.POST)
         if form.is_valid():
+            print(form)
             form.save()
             return redirect('home')
     else:
