@@ -117,11 +117,6 @@ body {
   text-decoration: none;
 }
 
-.list_results:active{
-  margin: 50px;
-text-decoration: none;
-  
-}
 
 #logcontainer{
   width: 40%;
@@ -140,7 +135,7 @@ text-decoration: none;
 }
 
 #desc{
-  font-size: 1.3em;
+  font-size: 1.2em;
   color: white;
 
 }

@@ -7,7 +7,7 @@
 <div class="card card-inverse" style="margin-top:20px">
   <div class="card-block main-card">
     <h3 class="card-title">User: {{item.user_id}}</h3>
-    <h3 class="card-title">Date: {{item.date}} </h3>
+    <h3 class="card-title">Date: {{item.date|date:"Y-m-d  H:i"}} </h3>
     <h3 class="card-title">Results: {{item.pass_rate}}% </h3>
     <h3 class="card-title">Lowesttime: {{item.duration}}ms</h3>
     <p class="card-text"> Samples:  {{item.samples}}

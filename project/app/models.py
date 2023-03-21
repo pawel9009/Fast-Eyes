@@ -16,12 +16,12 @@ class Image(models.Model):
 
     def __str__(self) -> str:
 
-        return f'{self.name} {self.uuid}'
+        return f'{self.name} {self.correct} {self.incorrect}'
 
 
 class Experiment(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
-    date = models.DateField(default=datetime.datetime.now)
+    date = models.DateTimeField(auto_now_add=True)
     pass_rate = models.FloatField(default=0, null=True)
     samples = models.CharField(max_length=256, default=None, null=False)
     duration = models.IntegerField(null=True, default=500)

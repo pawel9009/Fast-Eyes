@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="text-center">
-    <a class="start-button list_results" href="{% url 'app:exp_list' %}"> Results </a>
-
-    <a class="start-button list_results" href="{% url 'app:chall_list' %}"> Challenge </a>
+<div class="container">
+<div class="row">
+  <div class="col">
+    <a class="start-button" href="{% url 'app:exp_list' %}"> Results </a>
   </div>
+  <div class="col">
+    <a class="start-button" style="font-size:1.5em; margin-left:50p%" href="{% url 'app:chall_list' %}"> Challenge </a>
+  </div>
+</div>
+</div>
 {% block results %}
 
 

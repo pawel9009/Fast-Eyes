@@ -40,7 +40,7 @@ class ExperimentView(TemplateView):
                                         samples=dict_labels,
                                         duration=duration_time)
         exp.save()
-        return redirect('home')
+        return redirect('app:exp_list')
 
 
 class ChallengeView(ExperimentView):
@@ -54,7 +54,6 @@ class ChallengeView(ExperimentView):
 
     def post(self, request, *args, **kwargs):
         if request.POST['labels']!='':
-            print('weszło')
             answers = request.POST['data'][1:].split('-')
             labels = request.POST['labels'][1:].split('-')
             duration_time = int(request.POST['time'])

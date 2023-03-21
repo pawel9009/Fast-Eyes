@@ -21,7 +21,7 @@
       <label for="checkbox2">Medium</label>
     </li>
     <li>
-      <input type="radio" id="checkbox3"  name="options"  value="3000">
+      <input type="radio" id="checkbox3"  name="options"  value="500">
       <label for="checkbox3">Hard</label>
     </li>
   </ul>
@@ -50,7 +50,7 @@
     <input id="labels" name="labels" class="hidden" />
 
     <div class="text-center">
-      <button id="submit" class="btn btn-primary d-block mx-auto btn-lg hidden">
+      <button id="submit" class="btn start-button hidden" style="width:25%; margin-top:1em">
         Results
       </button>
     </div>
@@ -110,6 +110,11 @@
         nextButton.classList.add("hidden");
         ans.classList.add("hidden");
         subbutton.classList.remove("hidden");
+        desc.classList.remove("hidden");
+          desc.innerHTML = "You managed to answer all 10 samples.</br> In the My Results tab you can see what score you got."
+          setTimeout(() => {
+            subbutton.click();
+          }, 9000);
         timev2.value = time_duration;
       } else {
         console.log("");
