@@ -9,6 +9,10 @@ from .models import Experiment, Image
 
 
 class ExperimentView(TemplateView):
+    """Experiment view displaying successive samples
+      then post creating an object in the database while
+        modifying the model of individual samples
+    """
     form = ExperimentForm
     template_name = 'app/experiment.html'
 
@@ -44,6 +48,11 @@ class ExperimentView(TemplateView):
 
 
 class ChallengeView(ExperimentView):
+    """
+    Challenege view displaying consecutive samples then posting
+    creating an object in the database while modifying the model
+    of individual samples depending on the number of responses
+    """
     template_name = 'app/challenge.html'
 
     def get(self, request, *args, **kwargs):
@@ -76,10 +85,16 @@ class ChallengeView(ExperimentView):
 
 
 class ResultsListView(LoginRequiredMixin, TemplateView):
+    """
+    Return of results where you can choose between 2 options
+    """
     template_name = 'app/result_list.html'
 
 
 class ExperimentListView(LoginRequiredMixin, ListView):
+    """
+    Return of results for ordinary experiments
+    """
     model = Experiment
     template_name = 'app/exp_list.html'
     context_object_name = 'exp_list'
@@ -91,6 +106,9 @@ class ExperimentListView(LoginRequiredMixin, ListView):
 
 
 class ChallengeListView(LoginRequiredMixin, ListView):
+    """
+    Return results for challenge
+    """
     model = Experiment
     template_name = 'app/challenge_list.html'
     context_object_name = 'challenge_list'
@@ -102,6 +120,10 @@ class ChallengeListView(LoginRequiredMixin, ListView):
 
 
 def upload_images(request):
+    """
+    In the case of the admin, the ability to
+    add all samples to the database
+    """
 
     if request.method == 'GET':
         return render(request, 'app/upload_data.html')
@@ -110,6 +132,6 @@ def upload_images(request):
         image_list = request.FILES.getlist('images')
 
         for img in image_list:
-            name1 = str(img).split('.')[0]
-            Image.objects.create(img=img, name=name1)
+            img_name = str(img).split('.')[0]
+            Image.objects.create(img=img, name=img_name)
     return redirect('home')

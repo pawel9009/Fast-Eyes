@@ -6,7 +6,7 @@ from django.db import models
 from accounts.models import User
 from mysite import settings
 
-
+# Model for storing the image with the name and the number of correct and incorrect recognitions.
 class Image(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     img = models.ImageField(upload_to=settings.MEDIA_ROOT)
@@ -15,10 +15,9 @@ class Image(models.Model):
     incorrect = models.IntegerField(null=True, default=0)
 
     def __str__(self) -> str:
-
         return f'{self.name} {self.correct} {self.incorrect}'
 
-
+# Model for storing the experiment for the user. Including date, percentage of accuracy and time.
 class Experiment(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     date = models.DateTimeField(auto_now_add=True)

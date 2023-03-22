@@ -6,6 +6,7 @@ from django.urls import path
 from .views import (ChallengeListView, ChallengeView, ExperimentListView,
                     ExperimentView, upload_images)
 
+# Name for the application along with paths some of which require login
 app_name = 'app'
 
 urlpatterns = [

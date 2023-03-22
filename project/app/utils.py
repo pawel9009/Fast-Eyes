@@ -1,15 +1,18 @@
-n = 8000
-lista = []
+"""
+Test program for generating successive times during the challenge
+"""
+number = 8000
+array = []
 for x in range(20):
-    lista.append(round(n))
-    print(n)
+    array.append(round(number))
+    print(number)
     if x <= 5:
-        n -= n*0.12
+        number -= number*0.12
     elif x <= 10:
-        n -= n*0.08
+        number -= number*0.08
     elif x <= 15:
-        n -= n*0.05
+        number -= number*0.05
     else:
-        n -= n*0.02
+        number -= number*0.02
 
-print(lista)
+print(array)
