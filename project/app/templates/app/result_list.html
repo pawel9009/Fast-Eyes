@@ -1,23 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-<div class="row">
-  <div class="col">
-  
-  </div>
-  <div class="col">
-    
-    <div class="row justify-content-md-center">
-      <div class="col col-lg-2">
-        <a class="start-button" href="{% url 'app:exp_list' %}"> Results </a>
-      </div>
-      <div class="col-md-auto">
-        Variable width content
-      </div>
-      <div class="col col-lg-2">
-        <a class="start-button" style="font-size:1.5em; margin-left:50p%" href="{% url 'app:chall_list' %}"> Challenge </a>
-      </div>
+<div class="container text-center">
+
+        <a class="start-button" style="font-size:1.5em;" href="{% url 'app:exp_list' %}"> Results </a>
+        <a class="start-button" style="font-size:1.5em;" href="{% url 'app:chall_list' %}"> Challenge </a>
     </div>
 {% block results %}
 

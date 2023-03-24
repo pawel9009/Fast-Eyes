@@ -105,12 +105,14 @@
           currentIndex++;
 
           labels += "-" + ansver;
-          labels_data.value = labels_dataxx;
+          
           ans.value = "";
           data.value = labels;
           showImage(currentIndex);
         }else{
           timev2.value = times[currentIndex];
+          
+          labels_data.value = labels_dataxx;
           
           if (currentIndex==0){
            desc.classList.remove("hidden");

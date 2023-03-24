@@ -114,8 +114,10 @@ class ChallengeListView(LoginRequiredMixin, ListView):
     context_object_name = 'challenge_list'
 
     def get_queryset(self):
-        qs = Experiment.objects.filter(user_id=self.request.user, challenge=True)
+        qs = Experiment.objects.filter(user_id=self.request.user, challenge=True)   
         qs = qs.order_by('-id')
+        for item in qs:
+            item.samples=item.samples.replace("'","").replace(",","").replace("[","").replace("]","")
         return qs
 
 
