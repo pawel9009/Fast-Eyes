@@ -4,3 +4,7 @@ flake8-django==1.1.5
 isort==5.12.0
 django-bootstrap-v5==1.0.11
 Pillow==9.4.0
+seaborn==0.12.2
+pandas==1.5.3
+numpy==1.24.2
+matplotlib==3.7.1

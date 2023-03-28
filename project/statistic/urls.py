@@ -3,17 +3,13 @@ from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required
 from django.urls import path
 
-from .views import (ChallengeListView, ChallengeView, ExperimentListView,
-                    ExperimentView, upload_images)
+from .views import HomeView
+
 
 # Name for the application along with paths some of which require login
-app_name = 'app'
+app_name = 'statistic'
 
 urlpatterns = [
-    path('data/', login_required(upload_images), name='data'),
-    path('experiment/', login_required(ExperimentView.as_view()), name='experiment'),
-    path('challenge/', login_required(ChallengeView.as_view()), name='challenge'),
-    path('list/', login_required(ExperimentListView.as_view()), name='list'),
-    path('exp_list/', login_required(ExperimentListView.as_view()), name='exp_list'),
-    path('chall_list/', login_required(ChallengeListView.as_view()), name='chall_list'),
+    path('', login_required(HomeView.as_view()), name='plot'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

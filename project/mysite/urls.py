@@ -10,6 +10,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('image/', include('app.urls', namespace='app')),
+    path('statistic/', include('statistic.urls', namespace='statistic')),
     path('test/', views.TestPage.as_view(), name='test'),
     path('thanks/', views.ThanksPage.as_view(), name='thanks'),
 ]
