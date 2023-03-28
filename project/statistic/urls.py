@@ -5,7 +5,6 @@ from django.urls import path
 
 from .views import HomeView
 
-
 # Name for the application along with paths some of which require login
 app_name = 'statistic'
 

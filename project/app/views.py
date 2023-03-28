@@ -62,7 +62,7 @@ class ChallengeView(ExperimentView):
         return render(request, 'app/challenge.html', {'form': qs})
 
     def post(self, request, *args, **kwargs):
-        if request.POST['labels']!='':
+        if request.POST['labels'] != '':
             answers = request.POST['data'][1:].split('-')
             labels = request.POST['labels'][1:].split('-')
             duration_time = int(request.POST['time'])
@@ -80,7 +80,7 @@ class ChallengeView(ExperimentView):
                                             challenge=True)
             exp.save()
             return redirect('app:chall_list')
-   
+
         return redirect('app:challenge')
 
 
@@ -103,9 +103,9 @@ class ExperimentListView(LoginRequiredMixin, ListView):
         qs = Experiment.objects.filter(user_id=self.request.user, challenge=False)
         qs = qs.order_by('-id')
         for item in qs:
-            item.samples=item.samples.replace("'","").replace(",","").replace("[","").replace("]","")
-        
-        #faker
+            item.samples = item.samples.replace("'", "").replace(",", "").replace("[", "").replace("]", "")
+
+        # faker
         # dur = [500, 5000, 7000]
         # pass_ra = [float(q) for q in range(5,101,5)]
         # for x in range(1500):
@@ -127,10 +127,10 @@ class ChallengeListView(LoginRequiredMixin, ListView):
     context_object_name = 'challenge_list'
 
     def get_queryset(self):
-        qs = Experiment.objects.filter(user_id=self.request.user, challenge=True)   
+        qs = Experiment.objects.filter(user_id=self.request.user, challenge=True)
         qs = qs.order_by('-id')
         for item in qs:
-            item.samples=item.samples.replace("'","").replace(",","").replace("[","").replace("]","")
+            item.samples = item.samples.replace("'", "").replace(",", "").replace("[", "").replace("]", "")
         return qs
 
 

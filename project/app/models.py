@@ -1,10 +1,10 @@
-import datetime
 import uuid
 
 from django.db import models
 
 from accounts.models import User
 from mysite import settings
+
 
 # Model for storing the image with the name and the number of correct and incorrect recognitions.
 class Image(models.Model):
@@ -16,6 +16,7 @@ class Image(models.Model):
 
     def __str__(self) -> str:
         return f'{self.name} {self.correct} {self.incorrect}'
+
 
 # Model for storing the experiment for the user. Including date, percentage of accuracy and time.
 class Experiment(models.Model):

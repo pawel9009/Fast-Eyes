@@ -1,21 +1,20 @@
-from django.test import TestCase
-from django.urls import reverse
-from .models import User
-from django.test import Client
 from django.contrib.auth import get_user_model
+from django.test import Client, TestCase
+from django.urls import reverse
 
+from .models import User
 
 
 class UserRegistrationTestCase(TestCase):
     def setUp(self) -> None:
         self.cl = Client()
         self.url = reverse('accounts:signup')
-        self.username=  'user999',
-        self.password1= 'zaq1@WSX',
-        self.password2=  'zaq1@WSX',
-        self.birth_day= 1934,
-        self.sex= 'Male',
-        self.ailments='sdadasd',
+        self.username =  'user999',
+        self.password1 = 'zaq1@WSX',
+        self.password2 =  'zaq1@WSX',
+        self.birth_day = 1934,
+        self.sex = 'Male',
+        self.ailments ='sdadasd',
         return super().setUp()
         
 
@@ -30,8 +29,6 @@ class UserRegistrationTestCase(TestCase):
         }, format='text/html')
 
         # self.assertEqual(response.status_code, 200)
-        User = get_user_model()
+        
         user = User.objects.get(username=self.username)
         self.assertIsNotNone(user)
-
-      
