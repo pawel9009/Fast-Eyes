@@ -10,4 +10,4 @@ class User(AbstractUser):
     ailments = models.TextField(default='', max_length=1000)
 
     def __str__(self):
-        return f"{self.username}"
+        return f"{self.id} {self.username}"
