@@ -17,7 +17,8 @@ class HomeView(generic.TemplateView):
     template_name = 'statistic/home.html'
 
     def get(self, request, *args, **kwargs):
-        img = plot()
-        context = {'my_plot': img}
-        template = loader.get_template(self.template_name)
-        return HttpResponse(template.render(context, request))
+        
+        context = plot()
+        
+        return render(request, self.template_name, context)
+      

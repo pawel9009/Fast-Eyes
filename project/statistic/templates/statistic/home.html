@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<img src="data:image/png;base64,{{ my_plot }}" alt="My Plot">
+{{ plot|safe }}
 
 
 {% endblock %}
