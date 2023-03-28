@@ -27,4 +27,4 @@ class Experiment(models.Model):
     challenge = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return f'{self.id} {self.user_id} {self.date}'
+        return f'{self.id} {self.pass_rate} {self.duration}'

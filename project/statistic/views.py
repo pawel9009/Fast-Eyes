@@ -12,8 +12,10 @@ class HomeView(generic.TemplateView):
         data_challenge = Experiment.objects.all().filter(challenge=True)
         data_experiment = Experiment.objects.all().filter(challenge=False)
 
-        # context = plot_challenge(data_challenge)
-        context = plot_experiment(data_experiment) 
+      
+        context = plot_challenge(data_challenge)
+
+        context['exp'] = plot_experiment(data_experiment)
     
         
         return render(request, self.template_name, context)

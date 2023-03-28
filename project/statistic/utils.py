@@ -29,8 +29,7 @@ def plot_challenge(data):
 def plot_experiment(data):
     x = [float(q) for q in range(5,101,5)]
     pr_dict= {key:[0,0,0] for key in x}
-    for item in data:
-        print(item.id,item.pass_rate)
+
 
     for item in data:
         if item.duration == 7000:
@@ -48,21 +47,17 @@ def plot_experiment(data):
 
 
     fig = go.Figure(data=[
-    go.Bar(name='easy', x=x, y=easy),
-    go.Bar(name='medium', x=x, y=med),
-    go.Bar(name='hard', x=x, y=hard),
+    go.Bar(name='Easy', x=x, y=easy , text=easy,  textposition='outside',),
+    go.Bar(name='Medium', x=x, y=med, text=med,  textposition='outside',),
+    go.Bar(name='Hard', x=x, y=hard, text=hard,  textposition='outside', ),
         ])
     
-    # fig = go.Figure()
-    # fig.add_trace(go.Bar(x=x, y=y))
 
     fig.update_xaxes(type='category')
     fig.update_layout(
         
-        title="Challenge Barplot",
+        title="Experiment Barplot",
         xaxis_title="Pass rate (%)",
         yaxis_title="Counts",)
 
-    context = {'plot': fig.to_html(full_html=False)}
-
-    return context
+    return fig.to_html(full_html=False)
