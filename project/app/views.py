@@ -86,14 +86,14 @@ class ChallengeView(ExperimentView):
 
 class ResultsListView(LoginRequiredMixin, TemplateView):
     """
-    Return of results where you can choose between 2 options
+    Return results where you can choose between 2 options
     """
     template_name = 'app/result_list.html'
 
 
 class ExperimentListView(LoginRequiredMixin, ListView):
     """
-    Return of results for ordinary experiments
+    Return results for ordinary experiments
     """
     model = Experiment
     template_name = 'app/exp_list.html'
@@ -102,6 +102,8 @@ class ExperimentListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         qs = Experiment.objects.filter(user_id=self.request.user, challenge=False)
         qs = qs.order_by('-id')
+        for item in qs:
+            item.samples=item.samples.replace("'","").replace(",","").replace("[","").replace("]","")
         return qs
 
 
