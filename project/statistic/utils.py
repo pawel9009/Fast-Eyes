@@ -11,7 +11,7 @@ def plot_challenge(data):
     y = [value for _, value in pr_dict.items()]
 
     fig = go.Figure()
-    fig.add_trace(go.Bar(x=x, y=y))
+    fig.add_trace(go.Bar(x=x, y=y, text=y, textposition='outside',))
     fig.update_xaxes(type='category')
     fig.update_layout(
         title="Challenge Barplot",
@@ -24,7 +24,7 @@ def plot_challenge(data):
 
 
 def plot_experiment(data):
-    x = [float(q) for q in range(5, 101, 5)]
+    x = [float(q) for q in range(0, 101, 10)]
     pr_dict = {key: [0, 0, 0] for key in x}
     for item in data:
         if item.duration == 7000:
@@ -48,4 +48,17 @@ def plot_experiment(data):
         title="Experiment Barplot",
         xaxis_title="Pass rate (%)",
         yaxis_title="Counts",)
+    return fig.to_html(full_html=False)
+
+
+def plot_pie_chart(exp, chal):
+    easy, med, hard = 0, 0, 0
+    for item in exp:
+        if item.duration == 7000: easy+=1
+        elif item.duration == 5000: med+=1
+        else: hard+=1
+    fig = go.Figure()
+    fig.add_trace(go.Pie(values=[len(chal), easy, med, hard],labels=['Challenge','Easy','Medium', 'Hard']))
+    fig.update_layout(
+        title="Total counts PieChart")
     return fig.to_html(full_html=False)

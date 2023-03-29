@@ -4,7 +4,7 @@ from django.views import generic
 from app.models import Experiment
 
 # Create your views here.
-from .utils import plot_challenge, plot_experiment
+from .utils import plot_challenge, plot_experiment, plot_pie_chart
 
 
 class HomeView(generic.TemplateView):
@@ -15,4 +15,5 @@ class HomeView(generic.TemplateView):
         data_experiment = Experiment.objects.all().filter(challenge=False)
         context = plot_challenge(data_challenge)
         context['exp'] = plot_experiment(data_experiment)
+        context['pie_chart'] = plot_pie_chart(data_experiment, data_challenge)
         return render(request, self.template_name, context)
