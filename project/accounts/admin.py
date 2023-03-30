@@ -5,7 +5,7 @@ from .models import User
 
 fields = list(UserAdmin.fieldsets)
 fields[1] = ('Personal Info', {'fields': (
- 'birth_day',
+ 'birth_year',
  'sex',
  'ailments')})
 

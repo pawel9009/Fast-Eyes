@@ -5,9 +5,9 @@ from .const import SEX_CHOICES
 
 
 class User(AbstractUser):
-    birth_day = models.IntegerField(null=False, blank=False)
-    sex = models.CharField(choices=SEX_CHOICES, max_length=10 )
-    ailments = models.TextField(default='', max_length=1000, blank=True, null=True)
+    birth_year = models.IntegerField(null=True, blank=True , choices=[(i, i) for i in range(1900, 2020,1)])
+    sex = models.CharField(choices=SEX_CHOICES, max_length=10, default='')
+    ailments = models.TextField(default=None, max_length=2000, null=True, blank=True)
 
     def __str__(self):
         return f"{self.username}"
