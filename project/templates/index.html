@@ -4,10 +4,16 @@
 
 
 {% if user.is_authenticated %}
-       inne info o stronie
-                
+
+
 {% else %}
-        dla nie zalogowanych
+Welcome to my website. This is an original project that I develop in my spare time.</br> </br>
+The whole idea of the application is to test ourselves how we do in recognizing and remembering images.
+ There are currently 2 modes available. In the first we can choose the level
+  of difficulty which differs in the time at which the image is displayed and their
+   number is a fixed 10. In the second mode to get the maximum 100% we have to correctly 
+   answer 20 samples. Only there is one catch, with each successive correct answer the display
+    time is reduced :)
 {% endif %} 
 
 {% endblock %}
