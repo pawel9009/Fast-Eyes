@@ -1,6 +1,9 @@
 from django.shortcuts import redirect, render
-
+from django.views.generic import TemplateView
 from . import forms
+
+class AboutView(TemplateView):
+    template_name = 'accounts/about_me.html'
 
 
 def register(request):

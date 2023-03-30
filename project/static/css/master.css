@@ -7,7 +7,7 @@ body {
     margin: 0;
     overflow: hidden;
     background: black;
-    color: gray;
+    color: white;
     font-size: large;
     font-family: 'Carter One', cursive;
   }
@@ -52,6 +52,12 @@ body {
   ul {
     list-style-type: none;
   }
+.ul_list{
+  list-style-type:circle;
+  color: white;
+}
+
+
 .radio{
 
   font-size:34px;

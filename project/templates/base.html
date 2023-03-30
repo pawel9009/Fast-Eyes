@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Fast Eyes</title>
@@ -25,6 +26,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li> <a  class="basenav" href="{% url 'home' %}" >Home</a></li>
+            <li> <a  class="basenav" href="{% url 'accounts:about' %}" >Author</a></li>
             {% if user.is_authenticated %}
                 {% if user.is_superuser %}
                    <li> <a class="basenav" href="{% url 'app:data' %}"> add data</a></li>
