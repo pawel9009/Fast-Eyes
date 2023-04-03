@@ -65,8 +65,10 @@
   <button id="next-button" class="btn start-button" style="width:25%; margin-top:1em">
     Next
   </button>
+  <input id="czas" type="text" class="input-type" value="10.0"/>
 </div>
 </div>
+
 
 
 {% endblock %} {% block scripts %}
@@ -83,12 +85,17 @@
   const ans = document.getElementById("answer");
   let currentIndex = 0;
   let time_duration = 0;
+  var czas = 0;
 
   let labels = "";
   let ansver = "";
   let labels_dataxx = "";
 
-
+	function odliczanie() {
+    czas -= 0.1;
+    var czasZaokraglony = czas.toFixed(1);
+    document.getElementById("czas").value = czasZaokraglony;
+  }
 
 
   function showImage(index) {
@@ -96,9 +103,13 @@
     images[index].style.display = "block";
     labels_dataxx += "-" + images[currentIndex].name;
     ans.classList.add("hidden");
+    
+    setInterval(odliczanie, 100);
+    nextButton.classList.add("hidden");
     setTimeout(() => {
       images[index].setAttribute("src", "{{ MEDIA_URL }}znak.png");
       ans.classList.remove("hidden");
+      nextButton.classList.remove("hidden");
       ans.focus();
     }, time_duration);
   }
@@ -134,6 +145,7 @@
     }
   }
 
+
   function handleButtonClick() {
     container.classList.remove("hidden");
     startButton.classList.add("hidden");
@@ -141,6 +153,7 @@
 
     time_duration = Number(document.querySelector('input[name="options"]:checked').value);
     time.classList.add("hidden");
+    czas = time_duration/1000
     
     nextButton.addEventListener("click", nextImage);
     answer.addEventListener("keypress", function (event) {
@@ -151,7 +164,7 @@
     });
     showImage(currentIndex);
   }
-
+  
   startButton.addEventListener('click', handleButtonClick);
 </script>
 {% endblock %}

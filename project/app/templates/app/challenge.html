@@ -80,10 +80,11 @@
     images[index].style.display = "block";
     labels_dataxx += "-" + images[currentIndex].name;
     ans.classList.add("hidden");
-    
+    nextButton.classList.add("hidden");
     setTimeout(() => {
       images[index].setAttribute("src", "{{ MEDIA_URL }}znak.png");
       ans.classList.remove("hidden");
+      nextButton.classList.remove("hidden");
       ans.focus();
     }, times[index]);
   }
