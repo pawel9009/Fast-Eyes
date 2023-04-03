@@ -27,7 +27,8 @@
         <ul class="nav navbar-nav navbar-right">
             <li> <a  class="basenav" href="{% url 'home' %}" >Home</a></li>
             <li> <a  class="basenav" href="{% url 'accounts:about' %}" >Author</a></li>
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated %}<li>
+                 
                 {% if user.is_superuser %}
                    <li> <a class="basenav" href="{% url 'app:data' %}"> add data</a></li>
                 {% endif %}
@@ -36,6 +37,7 @@
                 <li> <a  class="basenav" href="{% url 'app:challenge' %}"> Challenge </a></li>
                 <li> <a  class="basenav" href="{% url 'app:experiment' %}"> Experiment </a></li>
                 <li> <a  class="basenav" href="{% url 'accounts:logout' %}"> Log Out</a></li>
+                <li><a  class="basenav"  >{{user}}</a></li>
               
                 
             {% else %}
@@ -56,13 +58,7 @@
 
 </div>
 
-
-<canvas id="canvas">
-</canvas>
 </body>
-<script type="text/javascript" src="{% static 'js/master.js' %}">
-
-</script>
 {% block scripts %}
 {% endblock %}
 </html>
