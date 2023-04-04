@@ -15,10 +15,21 @@ body {
   
 .signup{
   color: aqua;
-  width: 70%;
+  width: 50%;
 
 }
 
+.form-label{
+margin-top: 3%;
+}
+.form-select{
+  
+  margin-left: 4%;
+  color: aqua;
+  background-color: black;
+  background-clip: padding-box;
+
+}
 
 .main-card{
   background: #111;
