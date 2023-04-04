@@ -57,7 +57,7 @@
   </form>
 
   <div class="text-center">
-    <input id="answer" type="text" class="input-type" placeholder="..."/>
+    <input id="answer" type="text" class="input-type" maxlength="10" placeholder="..."/>
   </div>
 </div>
 
@@ -65,7 +65,7 @@
   <button id="next-button" class="btn start-button" style="width:25%; margin-top:1em">
     Next
   </button>
-  <input id="czas" type="text" class="input-type" value="10.0"/>
+  <input id="counter" type="text" class="input-type" value="10.0"/>
 </div>
 </div>
 
@@ -73,6 +73,7 @@
 
 {% endblock %} {% block scripts %}
 <script>
+  const counter = document.getElementById("counter");
   const startButton = document.getElementById('start-button');
   const timev2 = document.getElementById('timev2');
   const container = document.getElementById('container');
@@ -85,31 +86,40 @@
   const ans = document.getElementById("answer");
   let currentIndex = 0;
   let time_duration = 0;
-  var czas = 0;
+  var time_counter = 0;
 
+  let countdownInterval;
   let labels = "";
   let ansver = "";
   let labels_dataxx = "";
 
-	function odliczanie() {
-    czas -= 0.1;
-    var czasZaokraglony = czas.toFixed(1);
-    document.getElementById("czas").value = czasZaokraglony;
+  function startCountdown() {
+    countdownInterval = setInterval(function() {
+      if (time_counter>0.1){
+        time_counter -= 0.1;
+      }
+      
+      var time_result = time_counter.toFixed(1);
+      counter.value = time_result;
+    }, 100);
   }
-
 
   function showImage(index) {
     images.forEach((image) => (image.style.display = "none"));
     images[index].style.display = "block";
     labels_dataxx += "-" + images[currentIndex].name;
     ans.classList.add("hidden");
+    counter.classList.remove("hidden");
     
-    setInterval(odliczanie, 100);
+    startCountdown();
+    time_counter=time_duration/1000
     nextButton.classList.add("hidden");
     setTimeout(() => {
+      clearInterval(countdownInterval);
       images[index].setAttribute("src", "{{ MEDIA_URL }}znak.png");
       ans.classList.remove("hidden");
       nextButton.classList.remove("hidden");
+      counter.classList.add("hidden");
       ans.focus();
     }, time_duration);
   }
@@ -153,7 +163,7 @@
 
     time_duration = Number(document.querySelector('input[name="options"]:checked').value);
     time.classList.add("hidden");
-    czas = time_duration/1000
+    time_counter = time_duration/1000
     
     nextButton.addEventListener("click", nextImage);
     answer.addEventListener("keypress", function (event) {
