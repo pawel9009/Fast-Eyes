@@ -104,17 +104,6 @@ class ExperimentListView(LoginRequiredMixin, ListView):
         qs = qs.order_by('-id')
         for item in qs:
             item.samples = item.samples.replace("'", "").replace(",", "").replace("[", "").replace("]", "")
-
-        # faker
-        # dur = [500, 5000, 7000]
-        # pass_ra = [float(q) for q in range(0,101,10)]
-        # for x in range(100):
-        #     Experiment.objects.create(user_id=self.request.user,
-        #                               pass_rate=pass_ra[random.randint(0,10)],
-        #                             samples='sds',
-        #                             duration=dur[random.randint(0,2)],
-        #                             challenge=False)
-
         return qs
 
 
@@ -131,16 +120,6 @@ class ChallengeListView(LoginRequiredMixin, ListView):
         qs = qs.order_by('-id')
         for item in qs:
             item.samples = item.samples.replace("'", "").replace(",", "").replace("[", "").replace("]", "")
-        
-        # faker
-        # dur = [500, 5000, 7000]
-        # pass_ra = [float(q) for q in range(5,101,5)]
-        # for x in range(100):
-        #     Experiment.objects.create(user_id=self.request.user,
-        #                               pass_rate=pass_ra[random.randint(0,19)],
-        #                             samples='sds',
-        #                             duration=dur[random.randint(0,2)],
-        #                             challenge=True)
         return qs
 
 

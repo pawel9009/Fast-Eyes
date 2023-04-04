@@ -1,5 +1,6 @@
-from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+
 from .models import User
 
 
@@ -16,10 +17,7 @@ class UserCreateForm(UserCreationForm):
         self.fields['password1'].help_text = None
         self.fields['password2'].help_text = None
         self.fields['ailments'].widget = forms.Textarea(attrs={'rows': 2, 'cols': 50})
-        self.fields['username'].widget=forms.TextInput(attrs={'placeholder': ''})
-        self.fields['password1'].widget=forms.TextInput(attrs={'placeholder': ''})
-        self.fields['password2'].widget=forms.TextInput(attrs={'placeholder': ''})
-        self.fields['ailments'].widget=forms.TextInput(attrs={'placeholder': ''})
-
-      
-
+        self.fields['username'].widget = forms.TextInput(attrs={'placeholder': ''})
+        self.fields['password1'].widget = forms.TextInput(attrs={'placeholder': ''})
+        self.fields['password2'].widget = forms.TextInput(attrs={'placeholder': ''})
+        self.fields['ailments'].widget = forms.TextInput(attrs={'placeholder': ''})

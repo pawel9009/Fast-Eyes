@@ -54,11 +54,14 @@ def plot_experiment(data):
 def plot_pie_chart(exp, chal):
     easy, med, hard = 0, 0, 0
     for item in exp:
-        if item.duration == 7000: easy+=1
-        elif item.duration == 5000: med+=1
-        else: hard+=1
+        if item.duration == 7000:
+            easy += 1
+        elif item.duration == 5000:
+            med += 1
+        else:
+            hard += 1
     fig = go.Figure()
-    fig.add_trace(go.Pie(values=[len(chal), easy, med, hard],labels=['Challenge','Easy','Medium', 'Hard']))
+    fig.add_trace(go.Pie(values=[len(chal), easy, med, hard], labels=['Challenge', 'Easy', 'Medium', 'Hard']))
     fig.update_layout(
         title="Total counts PieChart")
     return fig.to_html(full_html=False)

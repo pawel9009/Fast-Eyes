@@ -3,7 +3,6 @@ import uuid
 from django.db import models
 
 from accounts.models import User
-from mysite import settings
 
 
 # Model for storing the image with the name and the number of correct and incorrect recognitions.
