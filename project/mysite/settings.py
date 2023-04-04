@@ -91,8 +91,8 @@ DATABASES = {
         'NAME': '',
         'USER': '',
         'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'HOST': '',
+        'PORT': '',
     },
 }
 
@@ -150,7 +150,7 @@ AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'thanks'
 
-# try:
-#     from mysite.settings_local import *  # noqa: F401,F403
-# except ImportError:
-#     pass
+try:
+    from mysite.settings_local import *  # noqa: F401,F403
+except ImportError:
+    pass
