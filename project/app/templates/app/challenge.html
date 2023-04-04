@@ -49,12 +49,14 @@
   <button id="next-button" class="btn start-button" style="width:25%; margin-top:1em">
     Next
   </button>
+  <input id="counter" type="text" class="input-type" value="10.0"/>
 </div>
 </div>
 
 
 {% endblock %} {% block scripts %}
 <script>
+  const counter = document.getElementById("counter");
   const startButton = document.getElementById('start-button');
   const timev2 = document.getElementById('timev2');
   const container = document.getElementById('container');
@@ -70,10 +72,22 @@
   const times = [8000, 7040, 6195, 5452, 4798, 4222, 3715, 3418, 3145, 
   2893, 2662, 2449, 2326, 2210, 2099, 1994, 1895, 1857, 1820, 1783]; 
 
+  var time_counter = 0;
+
+  let countdownInterval;
   let labels = "";
   let ansver = "";
   let labels_dataxx = "";
 
+  function startCountdown() {
+    countdownInterval = setInterval(function() {
+      if (time_counter>0.1){
+        time_counter -= 0.1;
+      }
+      var time_result = time_counter.toFixed(1);
+      counter.value = time_result;
+    }, 100);
+  }
 
   function showImage(index) {
     images.forEach((image) => (image.style.display = "none"));
@@ -81,10 +95,16 @@
     labels_dataxx += "-" + images[currentIndex].name;
     ans.classList.add("hidden");
     nextButton.classList.add("hidden");
+    counter.classList.remove("hidden");
+    
+    startCountdown();
+    time_counter=times[currentIndex]/1000
     setTimeout(() => {
+      clearInterval(countdownInterval);
       images[index].setAttribute("src", "{{ MEDIA_URL }}znak.png");
       ans.classList.remove("hidden");
       nextButton.classList.remove("hidden");
+      counter.classList.add("hidden");
       ans.focus();
     }, times[index]);
   }
@@ -111,7 +131,7 @@
           data.value = labels;
           showImage(currentIndex);
         }else{
-          timev2.value = times[currentIndex];
+          timev2.value = times[currentIndex-1];
           
           labels_data.value = labels_dataxx;
           
@@ -138,6 +158,7 @@
     container.classList.remove("hidden");
     startButton.classList.add("hidden");
     desc.classList.add("hidden");
+    time_counter = times[currentIndex]/1000
 
     nextButton.addEventListener("click", nextImage);
     answer.addEventListener("keypress", function (event) {
