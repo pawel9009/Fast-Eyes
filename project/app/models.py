@@ -1,5 +1,5 @@
 import uuid
-
+from mysite import settings
 from django.db import models
 
 from accounts.models import User
@@ -8,7 +8,7 @@ from accounts.models import User
 # Model for storing the image with the name and the number of correct and incorrect recognitions.
 class Image(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    img = models.ImageField(upload_to='')
+    img = models.ImageField(upload_to=settings.MEDIA_ROOT)
     name = models.CharField(max_length=100)
     correct = models.IntegerField(null=True, default=0)
     incorrect = models.IntegerField(null=True, default=0)

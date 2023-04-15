@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'fdgfdshfshgf23452354ds'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,14 +78,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
-# DATABASE_URL = 'postgresql://<postgresql>'
-
-# DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
-
-
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -96,6 +88,10 @@ DATABASES = {
         'PORT': '',
     },
 }
+
+
+# Database
+# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
 # Password validation
@@ -133,13 +129,21 @@ DATA_UPLOAD_MAX_NUMBER_FILES = 5000
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+
+
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -152,6 +156,6 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'thanks'
 
 try:
-    from mysite.settings_local import *  # noqa: F401,F403
+    from .settings_local import *  # noqa: F401,F403
 except ImportError:
     pass

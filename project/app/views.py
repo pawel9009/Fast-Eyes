@@ -17,9 +17,8 @@ class ExperimentView(TemplateView):
     template_name = 'app/experiment.html'
 
     def get(self, request, *args, **kwargs):
-        num_imgs = Image.objects.count()
-        random_ids = random.sample(range(1, num_imgs + 1), 10)
-        qs = Image.objects.filter(id__in=random_ids)
+        uniq_id = [item.id for item in Image.objects.all()]
+        qs= Image.objects.filter(id__in=random.sample(uniq_id, 10))
         return render(request, 'app/experiment.html', {'form': qs})
 
     def post(self, request, *args, **kwargs):
@@ -56,9 +55,8 @@ class ChallengeView(ExperimentView):
     template_name = 'app/challenge.html'
 
     def get(self, request, *args, **kwargs):
-        num_imgs = Image.objects.count()
-        random_ids = random.sample(range(1, num_imgs + 1), 20)
-        qs = Image.objects.filter(id__in=random_ids)
+        uniq_id = [item.id for item in Image.objects.all()]
+        qs= Image.objects.filter(id__in=random.sample(uniq_id, 20))
         return render(request, 'app/challenge.html', {'form': qs})
 
     def post(self, request, *args, **kwargs):
