@@ -6,7 +6,7 @@ from .models import Experiment, Image
 class ImageForm(forms.ModelForm):
     class Meta:
         model = Image
-        fields = ['name', 'img']
+        fields = ['name']
 
 
 class ExperimentForm(forms.ModelForm):

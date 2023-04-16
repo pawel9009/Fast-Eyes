@@ -1,4 +1,5 @@
 import random
+import string
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
@@ -19,9 +20,11 @@ class ExperimentView(TemplateView):
     def get(self, request, *args, **kwargs):
         uniq_id = [item.id for item in Image.objects.all()]
         qs= Image.objects.filter(id__in=random.sample(uniq_id, 10))
+        print(qs)
         return render(request, 'app/experiment.html', {'form': qs})
 
     def post(self, request, *args, **kwargs):
+        print(request.POST)
         answers = request.POST['data'][1:].split('-')
         labels = request.POST['labels'][1:].split('-')
         duration_time = int(request.POST['time'])
@@ -131,9 +134,13 @@ def upload_images(request):
         return render(request, 'app/upload_data.html')
 
     if request.method == 'POST':
-        image_list = request.FILES.getlist('images')
-
-        for img in image_list:
-            img_name = str(img).split('.')[0]
-            Image.objects.create(img=img, name=img_name)
+        n = 0
+        chars = string.ascii_letters + string.digits
+        uniq = []
+        while n<=500:
+            random_string = ''.join(random.choice(chars) for _ in range(5))
+            if random_string not in uniq:
+                Image.objects.create(name=random_string)
+                uniq.append(random_string)
+                n+=1
     return redirect('home')
