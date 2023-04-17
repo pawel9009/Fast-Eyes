@@ -21,7 +21,7 @@
       <label for="checkbox2">Medium</label>
     </li>
     <li>
-      <input type="radio" id="checkbox3"  name="options"  value="3000">
+      <input type="radio" id="checkbox3"  name="options"  value="500">
       <label for="checkbox3">Hard</label>
     </li>
   </ul>
@@ -46,7 +46,7 @@
     <input id="timev2" name="time" class="hidden" />
     <input id="data" name="data" class="hidden" />
 
-    <input id="labels" name="labels" class="hidden" />
+    <input id="labels" name="labels" class="hidden" value={{names}} />
 
     <div class="text-center">
       <button id="submit" class="btn start-button hidden" style="width:25%; margin-top:1em">
@@ -56,7 +56,7 @@
   </form>
 
   <div class="text-center">
-    <input id="answer" type="text" class="input-type" maxlength="10" placeholder="..."/>
+    <input id="answer" type="text" class="input-type" maxlength="5" placeholder="..."/>
   </div>
 </div>
 
@@ -81,7 +81,6 @@
   const desc = document.getElementById("desc");
   const subbutton = document.getElementById("submit");
   const data = document.getElementById("data");
-  const labels_data = document.getElementById("labels");
   const ans = document.getElementById("answer");
   let currentIndex = 0;
   let time_duration = 0;
@@ -90,7 +89,7 @@
   let countdownInterval;
   let labels = "";
   let ansver = "";
-  let labels_dataxx = "";
+
 
   function startCountdown() {
     countdownInterval = setInterval(function() {
@@ -103,9 +102,8 @@
   }
 
   function showImage(index) {
-    names.forEach((image) => (image.style.display = "none"));
+    names.forEach((name) => (name.style.display = "none"));
     names[index].style.display = "block";
-    labels_dataxx += "-" + names[currentIndex].name;
     ans.classList.add("hidden");
     counter.classList.remove("hidden");
     
@@ -141,13 +139,13 @@
       
       ansver = ans.value;
 
+
       if (ansver.length > 0) {
         currentIndex++;
         labels += "-" + ansver;
-        labels_data.value = labels_dataxx;
         ans.value = "";
         data.value = labels;
-      
+   
         showImage(currentIndex);
       } 
     }
@@ -162,11 +160,12 @@
     time_duration = Number(document.querySelector('input[name="options"]:checked').value);
     time.classList.add("hidden");
     time_counter = time_duration/1000
-    
+
+
     nextButton.addEventListener("click", nextImage);
     answer.addEventListener("keypress", function (event) {
       if (event.key === "Enter") {
-        console.log('działa');
+           
         nextButton.click();
       }
     });

@@ -19,12 +19,12 @@ class ExperimentView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         uniq_id = [item.id for item in Image.objects.all()]
-        qs= Image.objects.filter(id__in=random.sample(uniq_id, 10))
-        print(qs)
+        qs= Image.objects.filter(id__in=random.sample(uniq_id, 5))
+
         return render(request, 'app/experiment.html', {'form': qs})
 
     def post(self, request, *args, **kwargs):
-        print(request.POST)
+        
         answers = request.POST['data'][1:].split('-')
         labels = request.POST['labels'][1:].split('-')
         duration_time = int(request.POST['time'])
@@ -60,15 +60,20 @@ class ChallengeView(ExperimentView):
     def get(self, request, *args, **kwargs):
         uniq_id = [item.id for item in Image.objects.all()]
         qs= Image.objects.filter(id__in=random.sample(uniq_id, 20))
-        return render(request, 'app/challenge.html', {'form': qs})
+        names = ''
+        for item in qs:
+            names+='-'+item.name
+        print(names)
+        return render(request, 'app/challenge.html', {'form': qs,'names':names})
 
     def post(self, request, *args, **kwargs):
-        if request.POST['labels'] != '':
+        print(request.POST)
+        if request.POST['labels'] != '/':
             answers = request.POST['data'][1:].split('-')
             labels = request.POST['labels'][1:].split('-')
             duration_time = int(request.POST['time'])
             corr_answers = 0
-            for i, answer in enumerate(answers):
+            for i, _ in enumerate(answers):
                 obj = Image.objects.get(name=labels[i])
                 corr_answers += 1
                 obj.correct = obj.correct + 1

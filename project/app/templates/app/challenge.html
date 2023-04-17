@@ -16,14 +16,13 @@
 </div>
 <div id = 'container' class='hidden'> 
 {% for item in form %}
-<div id='image'>
-<img
-  src="{{item.img.url }}"
-  name="{{item.name}}"
-  class="product-image"
-  alt="image"
-/>
-</div>
+<div class="text-center">
+  <div id='image'>
+    <div class="product-image">
+      {{item.name}}
+    </div>
+  </div>
+  </div>
 {% endfor %}
 <div class="form">
   <form method="POST">
