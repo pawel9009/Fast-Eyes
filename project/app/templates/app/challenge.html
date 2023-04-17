@@ -3,7 +3,7 @@
 {% block content %}
 <div class="text-center" id="desc">
   Welcome to the real challenge mode!!! </br>
-   When you start, you will initially have 8 seconds to remember what is on the displayed picture.</br>
+   When you start, you will initially have 8 seconds to remember what is on the displayed sample.</br>
     After this time, write down what you remembered, and if you manage to answer correctly, you will move on.</br>
      With each successive correct answer the time to memorize will decrease. </br>
      To get 100% you must answer 20 samples correctly.  To check your score go to the My Results tab.</br> Good luck!!!
@@ -17,11 +17,7 @@
 <div id = 'container' class='hidden'> 
 {% for item in form %}
 <div class="text-center">
-  <div id='image'>
-    <div class="product-image">
-      {{item.name}}
-    </div>
-  </div>
+    <div class="product-image">{{item.name}}</div>
   </div>
 {% endfor %}
 <div class="form">
@@ -59,7 +55,7 @@
   const startButton = document.getElementById('start-button');
   const timev2 = document.getElementById('timev2');
   const container = document.getElementById('container');
-  const images = document.querySelectorAll(".product-image");
+  const names = document.querySelectorAll(".product-image");
   const nextButton = document.getElementById("next-button");
   const desc = document.getElementById("desc");
   const subbutton = document.getElementById("submit");
@@ -72,7 +68,7 @@
   2893, 2662, 2449, 2326, 2210, 2099, 1994, 1895, 1857, 1820, 1783]; 
 
   var time_counter = 0;
-
+  let current_label;
   let countdownInterval;
   let labels = "";
   let ansver = "";
@@ -89,9 +85,10 @@
   }
 
   function showImage(index) {
-    images.forEach((image) => (image.style.display = "none"));
-    images[index].style.display = "block";
-    labels_dataxx += "-" + images[currentIndex].name;
+    names.forEach((image) => (image.style.display = "none"));
+    names[index].style.display = "block";
+    labels_dataxx += "-" + names[index].innerHTML;
+    current_label = names[index].innerHTML;
     ans.classList.add("hidden");
     nextButton.classList.add("hidden");
     counter.classList.remove("hidden");
@@ -100,7 +97,7 @@
     time_counter=times[currentIndex]/1000
     setTimeout(() => {
       clearInterval(countdownInterval);
-      images[index].setAttribute("src", "{{ MEDIA_URL }}znak.png");
+      names[index].innerHTML = "?";
       ans.classList.remove("hidden");
       nextButton.classList.remove("hidden");
       counter.classList.add("hidden");
@@ -110,8 +107,8 @@
 
   function nextImage() {
     
-    if (currentIndex < images.length) {
-      if (currentIndex === images.length - 1) {
+    if (currentIndex < names.length) {
+      if (currentIndex === names.length - 1) {
         nextButton.classList.add("hidden");
         ans.classList.add("hidden");
         subbutton.classList.remove("hidden");
@@ -120,7 +117,7 @@
       ansver = ans.value;
 
       if (ansver.length > 0) {
-        if(images[currentIndex].name==ansver)
+        if(current_label==ansver)
         {
           currentIndex++;
 
@@ -137,7 +134,7 @@
           if (currentIndex==0){
            desc.classList.remove("hidden");
           ans.classList.add("hidden");
-          images[currentIndex].classList.add("hidden");
+          names[currentIndex].classList.add("hidden");
           nextButton.classList.add("hidden");
             desc.innerHTML = "Unfortunately, you failed.</br> You will be able to try again in a while."
             setTimeout(() => {

@@ -54,7 +54,10 @@ margin-top: 3%;
   .product-image{
     display: block;
     margin: 0 auto;
-
+    /* -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; */
     font-size: 12em;
   }
 
