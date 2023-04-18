@@ -1,20 +1,19 @@
 html {
     overflow-y: scroll;
-
 }
 
 body {
     margin: 0;
     overflow: hidden;
-    background: black;
-    color: white;
-    font-size: large;
-    font-family: 'Carter One', cursive;
+    background-image:url("../back.jpg");
+    font-size: 1.3em;
+    color: #7395AE;
+    font-family: 'Lato', sans-serif;
   }
 
   
 .signup{
-  color: aqua;
+  color: #7395AE;
   width: 50%;
 
 }
@@ -25,8 +24,8 @@ margin-top: 3%;
 .form-select{
   
   margin-left: 4%;
-  color: aqua;
-  background-color: black;
+  color: #7395AE;
+  background-color: #202121;
   background-clip: padding-box;
 
 }
@@ -38,16 +37,12 @@ margin-top: 3%;
 }
 .basenav{
 
-  color: aqua;
-  font-size: larger;
-  font-weight: 900;
+  color: #379683;
+  font-size: 1.4em;
   transition-duration: 300ms;
 }
 .basenav:hover{
-  background-color: black;
-  color: aqua;
-  font-size: larger;
-  font-weight: 900;
+  background-color:#202121;
   transition-duration: 300ms;
 }
 
@@ -58,25 +53,23 @@ margin-top: 3%;
     -moz-user-select: none; 
     -ms-user-select: none; 
     user-select: none; */
-    font-size: 12em;
+    font-size: 10em;
   }
 
 .btnnav{
   text-align: center;
   margin-top: 20px;
-  font-size: 50px;
   }
   ul {
     list-style-type: none;
   }
 .ul_list{
   list-style-type:circle;
-  color: white;
+  color: #7395AE;
 }
 
 
 .radio{
-
   font-size:34px;
 }
 
@@ -87,7 +80,7 @@ margin-top: 3%;
 }
 
 .radio-buttons label {
-  color: white;
+  color:  #7395AE;
   position: relative;
   display: inline-block;
   margin-bottom: 10px;
@@ -114,15 +107,15 @@ margin-top: 3%;
 }
 
 .radio-buttons input[type="radio"]:checked + label::before {
-  background-color:white;
+  background-color: #7395AE;
 }
 
 .start-button{
   width: 100%;
-  background-color: aqua;
-  color: black;
+  background-color: #202121;
+  color: #7395AE;
   font-size: larger;
-  font-weight: 900;
+  font-weight: 700;
   border-radius: 10px;
   border: 3px solid white;
   transition-duration: 300ms;
@@ -130,12 +123,12 @@ margin-top: 3%;
 
 .start-button:hover{
 
-  background-color: black;
-  color: aqua;
+  background-color: #202121;
+  color: white;
   font-size: larger;
   font-weight: 900;
   border-radius: 10px;
-  border: 3px solid aqua;
+  border: 3px solid #557A95;
   transition-duration: 300ms;
   text-decoration: none;
 }
@@ -143,13 +136,12 @@ margin-top: 3%;
 
 #logcontainer{
   width: 40%;
-  color: aqua;
   margin-top: 40px;
 }
 .input-type{
   width: 25%;
-  background: aqua;
-  color: black;
+  background:#202121;
+  color:#7395AE;
   font-size: 1.5em;
   font-weight: 900;
   text-align: center;
@@ -159,6 +151,6 @@ margin-top: 3%;
 
 #desc{
   font-size: 1.2em;
-  color: white;
+  color: #7395AE;
 
 }
