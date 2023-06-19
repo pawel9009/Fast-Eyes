@@ -3,10 +3,11 @@
 
 {% block content %}
     <div class="container" id="logcontainer">
+        <h1>Log in</h1>
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %} </br>
-        <input type="submit" class="btn start-button" value="Login">
+        <input type="submit" class="btn start-button" value="Log in">
     </form>
     </div>
 {% endblock %}

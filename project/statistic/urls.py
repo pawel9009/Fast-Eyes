@@ -9,6 +9,6 @@ from .views import HomeView
 app_name = 'statistic'
 
 urlpatterns = [
-    path('', login_required(HomeView.as_view()), name='plot'),
+    path('', HomeView.as_view(), name='plot'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
